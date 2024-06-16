@@ -1,0 +1,5904 @@
+version = 4.2
+
+//
+// Saved by sw version: 2023.4 SP1
+//
+
+model "MGDT_48_24_Modes_04_23_Phase_II_SC_1_V2" {
+    configuration {
+        hil_device = "HIL402"
+        hil_configuration_id = 2
+        simulation_method = euler
+        simulation_time_step = 10e-6
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        cpl_stb = True
+        enb_dep_sw_detect = False
+        code_section = "external memory"
+        data_section = "external memory"
+        sys_sp_rate_1 = 1e-05
+        sys_sp_rate_2 = 5e-05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        dae_solver = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.2
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = warning
+    }
+
+    component Subsystem "My model" {
+        component "core/Ground" gnd0 {
+        }
+        [
+            position = 1712, 1344
+            hide_name = True
+        ]
+
+        component "core/Ground" gnd3 {
+        }
+        [
+            position = 2304, 2120
+        ]
+
+        component "core/Ground" gnd2 {
+        }
+        [
+            position = 2304, 1688
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 2296, 1336
+        ]
+
+        component "core/Resistor" Rload3 {
+            resistance = "50"
+        }
+        [
+            position = 4552, 1200
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload2 {
+            resistance = "50"
+        }
+        [
+            position = 4408, 1200
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload1 {
+            resistance = "50"
+        }
+        [
+            position = 4280, 1200
+            rotation = right
+        ]
+
+        component "core/Single Pole Single Throw Contactor" S1 {
+            Sa = "26"
+            ctrl_src = "Model"
+        }
+        [
+            position = 4408, 1120
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Single Pole Single Throw Contactor" S2 {
+            Sa = "26"
+            ctrl_src = "Model"
+        }
+        [
+            position = 4552, 1112
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Iin {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 2008, 1056
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Iout {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 4184, 1056
+            size = 64, 32
+        ]
+
+        component "core/Buck" buck0 {
+            ctrl_src = "Model"
+            fvd_def_method = "LUT"
+            pwm_enable_di = "1"
+        }
+        [
+            position = 2472, 1152
+            size = 127, 256
+        ]
+
+        component "core/Buck" buck1 {
+            S1 = "2"
+            ctrl_src = "Model"
+            fvd_def_method = "LUT"
+        }
+        [
+            position = 2496, 1528
+            size = 127, 256
+        ]
+
+        component "core/Buck" buck2 {
+            S1 = "3"
+            ctrl_src = "Model"
+            fvd_def_method = "LUT"
+        }
+        [
+            position = 2496, 1928
+            size = 127, 256
+        ]
+
+        component "core/Voltage Measurement" Vout_f {
+            bw_limit = "True"
+            execution_rate = "Sample_Time"
+            frequency = "10"
+            sig_output = "True"
+        }
+        [
+            position = 4048, 1136
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Probe" Iout_1 {
+        }
+        [
+            position = 2992, 1008
+        ]
+
+        component "core/Current Measurement" I_2 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 2912, 1432
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" I_1 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 2928, 1056
+            size = 64, 32
+        ]
+
+        component "core/Probe" Iout_2 {
+        }
+        [
+            position = 2992, 1376
+        ]
+
+        component "core/Current Measurement" I_3 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 2904, 1832
+            size = 64, 32
+        ]
+
+        component "core/Probe" Iout_3 {
+        }
+        [
+            position = 2984, 1792
+        ]
+
+        component "core/Step" Step1 {
+            execution_rate = "inherit"
+            step_time = "20"
+        }
+        [
+            position = 4504, 1136
+            rotation = down
+        ]
+
+        component "core/Step" Step2 {
+            execution_rate = "inherit"
+            step_time = "40"
+        }
+        [
+            position = 4616, 1152
+            rotation = down
+        ]
+
+        component "core/Probe" Vout_Total {
+        }
+        [
+            position = 4184, 1136
+        ]
+
+        component "core/Probe" Iout_Total {
+        }
+        [
+            position = 4240, 1008
+        ]
+
+        component "core/Single Phase Core Coupling" "Core Coupling 1" {
+            fixed_snb_i = "true"
+            fixed_snb_u = "true"
+            snb_type_i = "R1"
+            snb_type_u = "R2"
+        }
+        [
+            position = 3520, 1152
+            size = 12, 256
+        ]
+
+        component "core/Capacitor" Cout4 {
+            capacitance = "2*470e-6"
+        }
+        [
+            position = 2296, 1200
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload7 {
+            resistance = "0.1"
+        }
+        [
+            position = 2296, 1112
+            rotation = left
+        ]
+
+        component "core/Capacitor" Cout5 {
+            capacitance = "2*470e-6"
+        }
+        [
+            position = 2304, 1584
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload8 {
+            resistance = "0.1"
+        }
+        [
+            position = 2304, 1496
+            rotation = left
+        ]
+
+        component "core/Capacitor" Cout6 {
+            capacitance = "2*470e-6"
+        }
+        [
+            position = 2304, 1976
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload9 {
+            resistance = "0.1"
+        }
+        [
+            position = 2304, 1888
+            rotation = left
+        ]
+
+        component "core/Inductor" L1 {
+            inductance = "15e-3"
+            signal_access = "Inherit"
+        }
+        [
+            position = 2728, 1056
+        ]
+
+        component "core/Resistor" Rload4 {
+            resistance = "0.1"
+        }
+        [
+            position = 2640, 1056
+            rotation = down
+        ]
+
+        component "core/Capacitor" Cout1 {
+            capacitance = "188e-6"
+        }
+        [
+            position = 2864, 1128
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload6 {
+            resistance = "0.1"
+        }
+        [
+            position = 2864, 1184
+            rotation = left
+        ]
+
+        component "core/Inductor" L4 {
+            inductance = "15e-3"
+            signal_access = "Inherit"
+        }
+        [
+            position = 2736, 1432
+        ]
+
+        component "core/Resistor" Rload10 {
+            resistance = "0.1"
+        }
+        [
+            position = 2648, 1432
+            rotation = down
+        ]
+
+        component "core/Capacitor" Cout7 {
+            capacitance = "188e-6"
+        }
+        [
+            position = 2872, 1504
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload11 {
+            resistance = "0.1"
+        }
+        [
+            position = 2872, 1560
+            rotation = left
+        ]
+
+        component "core/Inductor" L5 {
+            inductance = "15e-3"
+            signal_access = "Inherit"
+        }
+        [
+            position = 2728, 1832
+        ]
+
+        component "core/Resistor" Rload12 {
+            resistance = "0.1"
+        }
+        [
+            position = 2640, 1832
+            rotation = down
+        ]
+
+        component "core/Capacitor" Cout8 {
+            capacitance = "188e-6"
+        }
+        [
+            position = 2864, 1896
+            rotation = right
+        ]
+
+        component "core/Resistor" Rload13 {
+            resistance = "0.1"
+        }
+        [
+            position = 2864, 1952
+            rotation = left
+        ]
+
+        component "core/Resistor" Rload5 {
+            resistance = "0.1"
+        }
+        [
+            position = 1760, 1056
+            rotation = down
+        ]
+
+        component "core/Probe" MOSFET_1 {
+        }
+        [
+            position = 4560, 992
+        ]
+
+        component "core/Gain" Gain15 {
+            gain = "0"
+        }
+        [
+            position = 4488, 992
+        ]
+
+        component "core/Probe" MOSFET_2 {
+        }
+        [
+            position = 4752, 1040
+        ]
+
+        component "core/Gain" Gain16 {
+            gain = "0"
+        }
+        [
+            position = 4680, 1040
+        ]
+
+        component Subsystem "DT Control" {
+            layout = dynamic
+            component "core/Relational operator" "Relational operator1" {
+                relational_op = ">="
+            }
+            [
+                position = 8904, 7792
+            ]
+
+            component "core/Probe" G_1 {
+            }
+            [
+                position = 9096, 7792
+            ]
+
+            component "core/Relational operator" "Relational operator2" {
+                relational_op = ">="
+            }
+            [
+                position = 8824, 8232
+            ]
+
+            component "core/Probe" G_2 {
+            }
+            [
+                position = 9048, 8232
+            ]
+
+            component "core/Triangular Wave Source" "Triangular Wave Source3" {
+                duty_cycle = "1"
+                execution_rate = "Sample_Time"
+                frequency = "10e3"
+                max_val = "1"
+                min_val = "-1"
+            }
+            [
+                position = 8648, 8800
+            ]
+
+            component "core/Relational operator" "Relational operator3" {
+                relational_op = ">="
+            }
+            [
+                position = 8752, 8720
+            ]
+
+            component "core/Probe" G_3 {
+            }
+            [
+                position = 8968, 8720
+            ]
+
+            component "core/PID controller" "PID controller2" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "6"
+            }
+            [
+                position = 8616, 8704
+            ]
+
+            component "core/Sum" Sum1 {
+                signs = "+-"
+            }
+            [
+                position = 8520, 8704
+            ]
+
+            component "core/PID controller" "PID controller3" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "0.09"
+                kp = "0.09"
+            }
+            [
+                position = 8416, 8688
+            ]
+
+            component "core/Constant" Constant1 {
+                execution_rate = "Sample_Time"
+                value = "24"
+            }
+            [
+                position = 8272, 7776
+            ]
+
+            component "core/Sum" Sum2 {
+                signs = "-++"
+            }
+            [
+                position = 8384, 7776
+            ]
+
+            component "core/Sum" Sum3 {
+                signs = "-+"
+            }
+            [
+                position = 7096, 7760
+            ]
+
+            component "core/Sum" Sum4 {
+                signs = "-+"
+            }
+            [
+                position = 7096, 7880
+            ]
+
+            component "core/Sum" Sum5 {
+                signs = "+++"
+            }
+            [
+                position = 7536, 7840
+            ]
+
+            component "core/Sum" Sum6 {
+                signs = "-+"
+            }
+            [
+                position = 7808, 7840
+            ]
+
+            component "core/PID controller" "PID controller4" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "0.04"
+                kp = "0.04"
+            }
+            [
+                position = 7920, 7840
+            ]
+
+            component "core/Sum" Sum7 {
+                signs = "++"
+            }
+            [
+                position = 8064, 7856
+            ]
+
+            component "core/Constant" Constant3 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7976, 7936
+            ]
+
+            component "core/Sum" Sum8 {
+                signs = "-+"
+            }
+            [
+                position = 7112, 8200
+            ]
+
+            component "core/Sum" Sum9 {
+                signs = "-+"
+            }
+            [
+                position = 7112, 8288
+            ]
+
+            component "core/Sum" Sum10 {
+                signs = "+++"
+            }
+            [
+                position = 7544, 8264
+            ]
+
+            component "core/Sum" Sum11 {
+                signs = "-+"
+            }
+            [
+                position = 7808, 8280
+            ]
+
+            component "core/PID controller" "PID controller5" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "0.04"
+                kp = "0.04"
+            }
+            [
+                position = 7920, 8280
+            ]
+
+            component "core/Sum" Sum12 {
+                signs = "++"
+            }
+            [
+                position = 8064, 8280
+            ]
+
+            component "core/Product" Product1 {
+            }
+            [
+                position = 9280, 8424
+            ]
+
+            component "core/Constant" Constant5 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7976, 8376
+            ]
+
+            component "core/Probe" Pout_Total {
+            }
+            [
+                position = 9384, 8424
+            ]
+
+            component "core/Sum" Sum13 {
+                signs = "-+"
+            }
+            [
+                position = 7096, 8672
+            ]
+
+            component "core/Sum" Sum14 {
+                signs = "-+"
+            }
+            [
+                position = 7096, 8792
+            ]
+
+            component "core/Sum" Sum15 {
+                signs = "+++"
+            }
+            [
+                position = 7544, 8752
+            ]
+
+            component "core/Sum" Sum16 {
+                signs = "-+"
+            }
+            [
+                position = 7816, 8752
+            ]
+
+            component "core/PID controller" "PID controller6" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "0.04"
+                kp = "0.04"
+            }
+            [
+                position = 7928, 8752
+            ]
+
+            component "core/Sum" Sum17 {
+                signs = "++"
+            }
+            [
+                position = 8072, 8768
+            ]
+
+            component "core/Constant" Constant7 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7984, 8848
+            ]
+
+            component "core/Sum" Sum18 {
+                signs = "+-"
+            }
+            [
+                position = 8608, 7792
+            ]
+
+            component "core/PID controller" "PID controller7" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "0.09"
+                kp = "0.09"
+            }
+            [
+                position = 8504, 7776
+            ]
+
+            component "core/PID controller" "PID controller8" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "6"
+            }
+            [
+                position = 8736, 7792
+            ]
+
+            component "core/Constant" Constant8 {
+                execution_rate = "Sample_Time"
+                value = "24"
+            }
+            [
+                position = 8184, 8216
+            ]
+
+            component "core/Sum" Sum19 {
+                signs = "-++"
+            }
+            [
+                position = 8296, 8216
+            ]
+
+            component "core/Sum" Sum20 {
+                signs = "+-"
+            }
+            [
+                position = 8520, 8232
+            ]
+
+            component "core/PID controller" "PID controller9" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "0.09"
+                kp = "0.09"
+            }
+            [
+                position = 8416, 8216
+            ]
+
+            component "core/PID controller" "PID controller10" {
+                _tunable = "True"
+                controller_type = "PI"
+                ki = "6"
+            }
+            [
+                position = 8656, 8232
+            ]
+
+            component "core/Constant" Constant9 {
+                execution_rate = "Sample_Time"
+                value = "24"
+            }
+            [
+                position = 8184, 8688
+            ]
+
+            component "core/Sum" Sum21 {
+                signs = "-++"
+            }
+            [
+                position = 8296, 8688
+            ]
+
+            component "core/Triangular Wave Source" "Triangular Wave Source4" {
+                duty_cycle = "1"
+                execution_rate = "Sample_Time"
+                frequency = "10e3"
+                max_val = "1"
+                min_val = "-1"
+            }
+            [
+                position = 8776, 7872
+            ]
+
+            component "core/Triangular Wave Source" "Triangular Wave Source5" {
+                duty_cycle = "1"
+                execution_rate = "Sample_Time"
+                frequency = "10e3"
+                max_val = "1"
+                min_val = "-1"
+            }
+            [
+                position = 8704, 8328
+            ]
+
+            component "core/Constant" Constant10 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 6864, 8008
+            ]
+
+            component "core/Constant" Constant11 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 6856, 8424
+            ]
+
+            component "core/Gain" Gain9 {
+                gain = "5"
+            }
+            [
+                position = 9016, 7792
+            ]
+
+            component "core/Gain" Gain10 {
+                gain = "5"
+            }
+            [
+                position = 8968, 8232
+            ]
+
+            component "core/Gain" Gain11 {
+                gain = "5"
+            }
+            [
+                position = 8880, 8720
+            ]
+
+            component "core/Sum" Sum22 {
+                signs = "-+"
+            }
+            [
+                position = 7096, 7984
+            ]
+
+            component "core/Sum" Sum23 {
+                signs = "-+"
+            }
+            [
+                position = 7120, 8416
+            ]
+
+            component "core/Sum" Sum24 {
+                signs = "-+"
+            }
+            [
+                position = 7096, 8896
+            ]
+
+            component "core/Signal switch" "Signal switch1" {
+                threshold = "0"
+            }
+            [
+                position = 7184, 8000
+            ]
+
+            component "core/Constant" Constant12 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7120, 8056
+            ]
+
+            component "core/Signal switch" "Signal switch2" {
+                threshold = "0"
+            }
+            [
+                position = 7208, 8432
+            ]
+
+            component "core/Constant" Constant13 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7144, 8488
+            ]
+
+            component "core/Signal switch" "Signal switch3" {
+                threshold = "0"
+            }
+            [
+                position = 7192, 8912
+            ]
+
+            component "core/Constant" Constant14 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7128, 8968
+            ]
+
+            component "core/Gain" Gain15 {
+                gain = "1/3"
+            }
+            [
+                position = 7024, 8016
+            ]
+
+            component "core/Gain" Gain16 {
+                gain = "1/3"
+            }
+            [
+                position = 7048, 8448
+            ]
+
+            component "core/Gain" Gain17 {
+                gain = "1/3"
+            }
+            [
+                position = 7024, 8928
+            ]
+
+            component "core/Signal switch" "Signal switch7" {
+                threshold = "0"
+            }
+            [
+                position = 7816, 7744
+            ]
+
+            component "core/Constant" Constant18 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7744, 7720
+            ]
+
+            component "core/Signal switch" "Signal switch8" {
+                threshold = "0"
+            }
+            [
+                position = 7824, 8176
+            ]
+
+            component "core/Constant" Constant19 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7752, 8152
+            ]
+
+            component "core/Signal switch" "Signal switch9" {
+                threshold = "0"
+            }
+            [
+                position = 7792, 8592
+            ]
+
+            component "core/Constant" Constant20 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7720, 8568
+            ]
+
+            component "core/Gain" Gain12 {
+                gain = "1/3"
+            }
+            [
+                position = 7360, 8056
+            ]
+
+            component "core/Signal switch" "Signal switch4" {
+                threshold = "0"
+            }
+            [
+                position = 7424, 8072
+            ]
+
+            component "core/Constant" Constant15 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7360, 8128
+            ]
+
+            component "core/Gain" Gain18 {
+                gain = "1/3"
+            }
+            [
+                position = 7376, 8544
+            ]
+
+            component "core/Signal switch" "Signal switch5" {
+                threshold = "0"
+            }
+            [
+                position = 7440, 8560
+            ]
+
+            component "core/Constant" Constant16 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7376, 8608
+            ]
+
+            component "core/Gain" Gain19 {
+                gain = "1/3"
+            }
+            [
+                position = 7384, 9048
+            ]
+
+            component "core/Signal switch" "Signal switch6" {
+                threshold = "0"
+            }
+            [
+                position = 7448, 9064
+            ]
+
+            component "core/Constant" Constant17 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7384, 9120
+            ]
+
+            component "core/Gain" Gain21 {
+                gain = "1/3"
+            }
+            [
+                position = 8000, 8544
+            ]
+
+            component "core/Gain" Gain20 {
+                gain = "1/3"
+            }
+            [
+                position = 8160, 8080
+            ]
+
+            component "core/Sum" Sum25 {
+                signs = "-+"
+            }
+            [
+                position = 8360, 7992
+            ]
+
+            component "core/Signal switch" "Signal switch10" {
+                threshold = "0"
+            }
+            [
+                position = 8448, 8008
+            ]
+
+            component "core/Constant" Constant21 {
+                execution_rate = "Sample_Time"
+                value = "2"
+            }
+            [
+                position = 8240, 8040
+            ]
+
+            component "core/Sum" Sum26 {
+                signs = "-+"
+            }
+            [
+                position = 8344, 8416
+            ]
+
+            component "core/Signal switch" "Signal switch11" {
+                threshold = "0"
+            }
+            [
+                position = 8432, 8432
+            ]
+
+            component "core/Constant" Constant22 {
+                execution_rate = "Sample_Time"
+                value = "2"
+            }
+            [
+                position = 8224, 8464
+            ]
+
+            component "core/Sum" Sum27 {
+                signs = "-+"
+            }
+            [
+                position = 8352, 8888
+            ]
+
+            component "core/Signal switch" "Signal switch12" {
+                threshold = "0"
+            }
+            [
+                position = 8440, 8904
+            ]
+
+            component "core/Constant" Constant23 {
+                execution_rate = "Sample_Time"
+                value = "2"
+            }
+            [
+                position = 8232, 8936
+            ]
+
+            component "core/Sum" Sum28 {
+                signs = "-+"
+            }
+            [
+                position = 7584, 8848
+            ]
+
+            component "core/Signal switch" "Signal switch13" {
+                threshold = "0"
+            }
+            [
+                position = 7672, 8864
+            ]
+
+            component "core/Constant" Constant24 {
+                execution_rate = "Sample_Time"
+                value = "2"
+            }
+            [
+                position = 7464, 8896
+            ]
+
+            component "core/Constant" Constant25 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7584, 8968
+            ]
+
+            component "core/Sum" Sum29 {
+                signs = "-+"
+            }
+            [
+                position = 7552, 8384
+            ]
+
+            component "core/Signal switch" "Signal switch14" {
+                threshold = "0"
+            }
+            [
+                position = 7648, 8400
+            ]
+
+            component "core/Constant" Constant26 {
+                execution_rate = "Sample_Time"
+                value = "2"
+            }
+            [
+                position = 7440, 8432
+            ]
+
+            component "core/Constant" Constant27 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7552, 8512
+            ]
+
+            component "core/Sum" Sum30 {
+                signs = "-+"
+            }
+            [
+                position = 7592, 7944
+            ]
+
+            component "core/Signal switch" "Signal switch15" {
+                threshold = "0"
+            }
+            [
+                position = 7680, 7960
+            ]
+
+            component "core/Constant" Constant28 {
+                execution_rate = "Sample_Time"
+                value = "2"
+            }
+            [
+                position = 7472, 7992
+            ]
+
+            component "core/Constant" Constant29 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7592, 8064
+            ]
+
+            component "core/Constant" Constant30 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7728, 8304
+            ]
+
+            component "core/Constant" Constant31 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7744, 7896
+            ]
+
+            component "core/Constant" Constant32 {
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 7736, 8808
+            ]
+
+            tag Goto1 {
+                value = "S_1"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9016, 7744
+                size = 60, 20
+            ]
+
+            tag Goto2 {
+                value = "S_2"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8944, 8168
+                size = 60, 20
+            ]
+
+            tag Goto3 {
+                value = "S_3"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8880, 8640
+                size = 60, 20
+            ]
+
+            tag From5 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 7760
+                size = 60, 20
+            ]
+
+            tag From6 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 7808
+                size = 60, 20
+            ]
+
+            tag From7 {
+                value = "Vout"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8208, 7728
+                size = 60, 20
+            ]
+
+            tag From8 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 7864
+                size = 60, 20
+            ]
+
+            tag From9 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 7912
+                size = 60, 20
+            ]
+
+            tag Goto8 {
+                value = "Sec_1"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8280, 7888
+                size = 60, 20
+            ]
+
+            tag From10 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6976, 8184
+                size = 60, 20
+            ]
+
+            tag From11 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6976, 8232
+                size = 60, 20
+            ]
+
+            tag From12 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6976, 8288
+                size = 60, 20
+            ]
+
+            tag Goto9 {
+                value = "Sec_2"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8264, 8328
+                size = 60, 20
+            ]
+
+            tag From14 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 8672
+                size = 60, 20
+            ]
+
+            tag From15 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 8720
+                size = 60, 20
+            ]
+
+            tag From16 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 8776
+                size = 60, 20
+            ]
+
+            tag From17 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 8824
+                size = 60, 20
+            ]
+
+            tag Goto10 {
+                value = "Sec_3"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8216, 8816
+                size = 60, 20
+            ]
+
+            tag From18 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8328, 8088
+                size = 60, 20
+            ]
+
+            tag From19 {
+                value = "Vout"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8120, 8168
+                size = 60, 20
+            ]
+
+            tag From20 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8304, 8512
+                size = 60, 20
+            ]
+
+            tag From21 {
+                value = "Vout"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8120, 8640
+                size = 60, 20
+            ]
+
+            tag From25 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6976, 8336
+                size = 60, 20
+            ]
+
+            tag From23 {
+                value = "Iout_Total"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9136, 8392
+                size = 60, 20
+            ]
+
+            tag From24 {
+                value = "Vout"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9136, 8456
+                size = 60, 20
+            ]
+
+            tag From26 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 7968
+                size = 60, 20
+            ]
+
+            tag From27 {
+                value = "I_Bat_out"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 8016
+                size = 60, 20
+            ]
+
+            tag From28 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6984, 8400
+                size = 60, 20
+            ]
+
+            tag From29 {
+                value = "I_Bat_out"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6984, 8448
+                size = 60, 20
+            ]
+
+            tag From30 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 8880
+                size = 60, 20
+            ]
+
+            tag From31 {
+                value = "I_Bat_out"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6960, 8928
+                size = 60, 20
+            ]
+
+            tag From32 {
+                value = "S_DT_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7144, 7936
+                size = 60, 20
+            ]
+
+            tag From33 {
+                value = "S_DT_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7168, 8368
+                size = 60, 20
+            ]
+
+            tag From34 {
+                value = "S_DT_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 8848
+                size = 60, 20
+            ]
+
+            tag From44 {
+                value = "S_DT_4"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7768, 7664
+                size = 60, 20
+            ]
+
+            tag From45 {
+                value = "S_DT_4"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7776, 8096
+                size = 60, 20
+            ]
+
+            tag From46 {
+                value = "S_DT_4"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7744, 8512
+                size = 60, 20
+            ]
+
+            tag From39 {
+                value = "S_DT_0"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7344, 8008
+                size = 60, 20
+            ]
+
+            tag From40 {
+                value = "delta_i_act"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7304, 8544
+                size = 60, 20
+            ]
+
+            tag From41 {
+                value = "S_DT_0"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7360, 8496
+                size = 60, 20
+            ]
+
+            tag From42 {
+                value = "delta_i_act"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7312, 9048
+                size = 60, 20
+            ]
+
+            tag From43 {
+                value = "S_DT_0"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7368, 9000
+                size = 60, 20
+            ]
+
+            tag From47 {
+                value = "delta_i_act"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7928, 8544
+                size = 60, 20
+            ]
+
+            tag From36 {
+                value = "delta_i_act"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8088, 8080
+                size = 60, 20
+            ]
+
+            tag From49 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8224, 7976
+                size = 60, 20
+            ]
+
+            tag From51 {
+                value = "S_DT_ch"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8408, 7944
+                size = 60, 20
+            ]
+
+            tag From54 {
+                value = "S_DT_ch"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8392, 8368
+                size = 60, 20
+            ]
+
+            tag From55 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8208, 8408
+                size = 60, 20
+            ]
+
+            tag From22 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8312, 9008
+                size = 60, 20
+            ]
+
+            tag From57 {
+                value = "S_DT_ch"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8400, 8840
+                size = 60, 20
+            ]
+
+            tag From58 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8208, 8880
+                size = 60, 20
+            ]
+
+            tag From60 {
+                value = "S_DT_ch"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7632, 8800
+                size = 60, 20
+            ]
+
+            tag From61 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7440, 8848
+                size = 60, 20
+            ]
+
+            tag From62 {
+                value = "S_DT_ch"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7600, 8336
+                size = 60, 20
+            ]
+
+            tag From63 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7408, 8384
+                size = 60, 20
+            ]
+
+            tag From64 {
+                value = "S_DT_ch"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7640, 7896
+                size = 60, 20
+            ]
+
+            tag From65 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7448, 7944
+                size = 60, 20
+            ]
+
+            tag From66 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8448, 8296
+                size = 60, 20
+            ]
+
+            tag From67 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8480, 7864
+                size = 60, 20
+            ]
+
+            tag From68 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8440, 8784
+                size = 60, 20
+            ]
+
+            junction Junction49 sp
+            [
+                position = 8128, 7856
+            ]
+
+            junction Junction58 sp
+            [
+                position = 8136, 8280
+            ]
+
+            junction Junction60 sp
+            [
+                position = 8136, 8768
+            ]
+
+            junction Junction126 sp
+            [
+                position = 8944, 7792
+            ]
+
+            junction Junction127 sp
+            [
+                position = 8872, 8232
+            ]
+
+            junction Junction128 sp
+            [
+                position = 8808, 8720
+            ]
+
+            connect "PID controller2.out" "Relational operator3.in" as Connection194
+            connect Sum1.out "PID controller2.in" as Connection195
+            connect "PID controller3.out" Sum1.in as Connection196
+            connect From5 Sum3.in as Connection211
+            connect From8 Sum4.in as Connection213
+            connect Sum3.out Sum5.in as Connection215
+            connect Sum4.out Sum5.in1 as Connection216
+            [
+                breakpoints = 7136, 7840; 7320, 7840; 7320, 7840; 7432, 7840
+            ]
+            connect Sum6.out "PID controller4.in" as Connection219
+            connect Constant3.out Sum7.in1 as Connection220
+            connect From10 Sum8.in as Connection226
+            connect From11 Sum8.in1 as Connection227
+            connect From12 Sum9.in as Connection228
+            connect Sum8.out Sum10.in as Connection230
+            connect Sum9.out Sum10.in1 as Connection231
+            [
+                breakpoints = 7152, 8264; 7336, 8264; 7336, 8264; 7448, 8264
+            ]
+            connect Sum11.out "PID controller5.in" as Connection234
+            connect Constant5.out Sum12.in1 as Connection235
+            connect Sum12.in "PID controller5.out" as Connection236
+            connect From14 Sum13.in as Connection240
+            connect From15 Sum13.in1 as Connection241
+            connect From16 Sum14.in as Connection242
+            connect From17 Sum14.in1 as Connection243
+            connect Sum13.out Sum15.in as Connection244
+            connect Sum14.out Sum15.in1 as Connection245
+            [
+                breakpoints = 7136, 8744; 7320, 8744; 7320, 8752; 7432, 8752
+            ]
+            connect Sum16.out "PID controller6.in" as Connection248
+            connect Constant7.out Sum17.in1 as Connection249
+            connect Sum17.in "PID controller6.out" as Connection250
+            connect From7 Sum2.in as Connection254
+            connect Constant1.out Sum2.in1 as Connection255
+            connect Sum2.in2 Junction49 as Connection258
+            connect Junction49 Sum7.out as Connection259
+            [
+                breakpoints = 8128, 7856; 8128, 7856
+            ]
+            connect Sum2.out "PID controller7.in" as Connection264
+            connect Sum18.out "PID controller8.in" as Connection285
+            connect From19 Sum19.in as Connection294
+            connect Constant8.out Sum19.in1 as Connection295
+            connect "PID controller9.out" Sum20.in as Connection296
+            connect Sum19.out "PID controller9.in" as Connection297
+            connect Sum20.out "PID controller10.in" as Connection299
+            connect Sum12.out Junction58 as Connection309
+            connect Junction58 Sum19.in2 as Connection310
+            [
+                breakpoints = 8136, 8280; 8248, 8280; 8248, 8232
+            ]
+            connect "PID controller10.out" "Relational operator2.in" as Connection315
+            connect From21 Sum21.in as Connection316
+            connect Constant9.out Sum21.in1 as Connection317
+            connect Sum21.in2 Junction60 as Connection320
+            connect Junction60 Sum17.out as Connection321
+            [
+                breakpoints = 8136, 8768; 8136, 8768
+            ]
+            connect Sum21.out "PID controller3.in" as Connection325
+            connect From6 Sum3.in1 as Connection396
+            connect Gain9.out G_1.in as Connection710
+            connect Goto1 Junction126 as Connection711
+            [
+                breakpoints = 9016, 7744
+            ]
+            connect Junction126 "Relational operator1.out" as Connection712
+            [
+                breakpoints = 8944, 7792
+            ]
+            connect Gain9.in Junction126 as Connection713
+            connect Gain10.out G_2.in as Connection715
+            connect "Relational operator2.out" Junction127 as Connection716
+            connect Junction127 Goto2 as Connection717
+            [
+                breakpoints = 8872, 8160
+            ]
+            connect Gain10.in Junction127 as Connection718
+            connect From23 Product1.in as Connection338
+            connect Gain11.out G_3.in as Connection720
+            connect From24 Product1.in1 as Connection339
+            connect "Relational operator3.out" Junction128 as Connection721
+            connect Pout_Total.in Product1.out as Connection340
+            connect Junction128 Goto3 as Connection722
+            [
+                breakpoints = 8808, 8720
+            ]
+            connect Gain11.in Junction128 as Connection723
+            connect From25 Sum9.in1 as Connection769
+            connect From9 Sum4.in1 as Connection770
+            connect From26 Sum22.in as Connection771
+            connect From28 Sum23.in as Connection774
+            connect From30 Sum24.in as Connection777
+            connect Constant12.out "Signal switch1.in1" as Connection2035
+            connect Sum22.out "Signal switch1.in" as Connection2036
+            connect "Signal switch1.out" Sum5.in2 as Connection2037
+            [
+                breakpoints = 7256, 8000; 7256, 7848
+            ]
+            connect From32 "Signal switch1.in2" as Connection2038
+            connect Constant13.out "Signal switch2.in1" as Connection2039
+            connect From33 "Signal switch2.in2" as Connection2040
+            connect Sum23.out "Signal switch2.in" as Connection2041
+            connect "Signal switch2.out" Sum10.in2 as Connection2042
+            [
+                breakpoints = 7272, 8432; 7272, 8272
+            ]
+            connect Constant14.out "Signal switch3.in1" as Connection2043
+            connect From34 "Signal switch3.in2" as Connection2044
+            connect Sum24.out "Signal switch3.in" as Connection2045
+            connect "Signal switch3.out" Sum15.in2 as Connection2046
+            [
+                breakpoints = 7280, 8912; 7280, 8760
+            ]
+            connect From27 Gain15.in as Connection2053
+            connect Gain15.out Sum22.in1 as Connection2054
+            connect From29 Gain16.in as Connection2055
+            connect Gain16.out Sum23.in1 as Connection2056
+            connect From31 Gain17.in as Connection2057
+            connect Gain17.out Sum24.in1 as Connection2058
+            connect Sum7.in "PID controller4.out" as Connection2090
+            [
+                breakpoints = 7984, 7840
+            ]
+            connect "PID controller7.out" Sum18.in as Connection2091
+            [
+                breakpoints = 8552, 7776
+            ]
+            connect "PID controller8.out" "Relational operator1.in" as Connection2092
+            [
+                breakpoints = 8800, 7792
+            ]
+            connect "Relational operator1.in1" "Triangular Wave Source4.out" as Connection2093
+            [
+                breakpoints = 8848, 7872
+            ]
+            connect "Relational operator2.in1" "Triangular Wave Source5.out" as Connection2094
+            [
+                breakpoints = 8792, 8328
+            ]
+            connect Junction58 Goto9 as Connection2095
+            [
+                breakpoints = 8136, 8280; 8136, 8328
+            ]
+            connect Junction49 Goto8 as Connection2096
+            [
+                breakpoints = 8128, 7856; 8128, 7888
+            ]
+            connect Goto10 Junction60 as Connection2097
+            [
+                breakpoints = 8216, 8816; 8136, 8816
+            ]
+            connect "Triangular Wave Source3.out" "Relational operator3.in1" as Connection2098
+            [
+                breakpoints = 8696, 8800
+            ]
+            connect From44 "Signal switch7.in2" as Connection2076
+            connect Constant18.out "Signal switch7.in" as Connection2078
+            connect Sum5.out Sum6.in as Connection2105
+            connect From45 "Signal switch8.in2" as Connection2079
+            connect Constant19.out "Signal switch8.in" as Connection2080
+            connect Sum10.out Sum11.in as Connection2106
+            connect From46 "Signal switch9.in2" as Connection2083
+            connect Constant20.out "Signal switch9.in" as Connection2084
+            connect Sum15.out Sum16.in as Connection2107
+            connect Constant15.out "Signal switch4.in1" as Connection2059
+            connect Gain12.out "Signal switch4.in" as Connection2060
+            connect From39 "Signal switch4.in2" as Connection2062
+            connect From40 Gain18.in as Connection2063
+            connect Constant16.out "Signal switch5.in1" as Connection2064
+            connect Gain18.out "Signal switch5.in" as Connection2065
+            connect From41 "Signal switch5.in2" as Connection2066
+            connect From42 Gain19.in as Connection2068
+            connect Constant17.out "Signal switch6.in1" as Connection2069
+            connect Gain19.out "Signal switch6.in" as Connection2070
+            connect From43 "Signal switch6.in2" as Connection2071
+            connect From47 Gain21.in as Connection2110
+            connect From36 Gain20.in as Connection2108
+            connect From49 Sum25.in as Connection2116
+            connect Sum25.out "Signal switch10.in" as Connection2118
+            connect From51 "Signal switch10.in2" as Connection2119
+            connect From18 "Signal switch10.in1" as Connection2122
+            connect Constant21.out Sum25.in1 as Connection2124
+            connect Sum26.out "Signal switch11.in" as Connection2126
+            connect From54 "Signal switch11.in2" as Connection2127
+            connect Constant22.out Sum26.in1 as Connection2129
+            connect From20 "Signal switch11.in1" as Connection2130
+            connect From55 Sum26.in as Connection2131
+            connect Sum27.out "Signal switch12.in" as Connection2133
+            connect From57 "Signal switch12.in2" as Connection2134
+            connect Constant23.out Sum27.in1 as Connection2135
+            connect From22 "Signal switch12.in1" as Connection2138
+            connect From58 Sum27.in as Connection2139
+            connect Sum28.out "Signal switch13.in" as Connection2141
+            connect From60 "Signal switch13.in2" as Connection2142
+            connect Constant24.out Sum28.in1 as Connection2143
+            connect From61 Sum28.in as Connection2145
+            connect Constant25.out "Signal switch13.in1" as Connection2147
+            connect Sum29.out "Signal switch14.in" as Connection2148
+            connect From62 "Signal switch14.in2" as Connection2149
+            connect Constant26.out Sum29.in1 as Connection2150
+            connect From63 Sum29.in as Connection2151
+            connect Constant27.out "Signal switch14.in1" as Connection2152
+            connect Sum30.out "Signal switch15.in" as Connection2154
+            connect From64 "Signal switch15.in2" as Connection2155
+            connect Constant28.out Sum30.in1 as Connection2156
+            connect From65 Sum30.in as Connection2157
+            connect Constant29.out "Signal switch15.in1" as Connection2158
+            connect From66 Sum20.in1 as Connection2160
+            connect Constant30.out Sum11.in1 as Connection2161
+            connect Constant31.out Sum6.in1 as Connection2162
+            connect From67 Sum18.in1 as Connection2163
+            connect From68 Sum1.in1 as Connection2164
+            connect Constant32.out Sum16.in1 as Connection2165
+        }
+        [
+            position = 2432, 2376
+            size = 176, 184
+        ]
+
+        component Subsystem "Battery Control" {
+            layout = dynamic
+            component "core/Constant" V_dc_ref {
+                execution_rate = "Sample_Time"
+                value = "24"
+            }
+            [
+                position = 8296, 8120
+            ]
+
+            component "core/Constant" V_bat_ref {
+                _tunable = "True"
+                execution_rate = "Sample_Time"
+                value = "12"
+            }
+            [
+                position = 8248, 8312
+            ]
+
+            component "core/C function" "C function6" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real I_thresh_low;real I_thresh_high;real V_thresh_low;real V_thresh_high;"
+                init_fnc = "/*Begin code section*/
+Mode == 0;
+    S_grid == 1;
+    S_DT_3 == 0;
+    S_DT_0 == 0;
+    S_DT_4 == 0;
+    S_bat_dis == 0;
+    S_bat_ch == 0;
+    S_battery == 0;
+/*End code section*/"
+                input_terminals = "real SOC;real V_dc_ref;real V_dc;real V_in;real I_ref_dem;real I_convs;real Mode_feedback;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+I_thresh_low = 0.85*I_ref_dem;
+I_thresh_high = 1.15*I_ref_dem;
+V_thresh_low = 0.9*V_dc_ref;
+V_thresh_high = 1.1*V_dc_ref;
+//delta_v = V_dc_ref - V_dc;
+//if ((V_dc >= V_thresh_low) && (V_dc <= V_thresh_high))
+
+if (V_in >= 24)
+{
+    Mode = 0;
+    S_grid =1;
+    S_DT_3 =0;
+    S_DT_0 = 0;
+    S_DT_4 = 0;
+    S_bat_dis = 0;
+    S_bat_ch = 0;
+    S_battery = 0;
+
+    if (SOC >= 100)
+    {
+    Mode = 0;
+    S_grid = 1;
+    S_DT_3 = 0;
+    S_DT_0 = 0;
+    S_DT_4 = 0;
+        S_bat_dis = 0;
+        S_bat_ch = 0;
+        S_battery = 0;
+        S_DT_ch = 0;
+    }
+        else if (SOC <= 90) // Charging Mode
+    {
+        Mode = 1;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat_dis = 0;
+        S_bat_ch = 1;
+        S_battery = 1;
+        S_DT_ch = 1;
+    }
+
+
+}
+
+else if (V_in < 24)       // Discharging Modes
+{
+ if ((I_convs < I_thresh_low ) )
+    {
+        Mode = 4;
+        S_grid = 0;
+        S_DT_3 = 0;
+        S_DT_4 = 1;
+        S_DT_0 = 0;
+        S_bat_dis = 1;
+        S_bat_ch = 0;
+        S_battery = 1;
+        S_DT_ch = 0;
+    }
+}
+/*End code section*/"
+                output_terminals = "real S_grid;real S_DT_0;real S_DT_3;real S_DT_4;real S_DT_ch;real S_bat_dis;real S_bat_ch;real S_battery;real Mode;"
+                output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True"
+                output_terminals_show_labels = "True;True;True;True;True;True;True;True;True"
+                parameters = "real i_min;"
+            }
+            [
+                position = 7864, 7984
+                hide_name = True
+                size = 152, 248
+            ]
+
+            component "core/C function" "C function7" {
+                global_variables = "real R_k;real I_convs_pu;real i_ref;"
+                init_fnc = "/*Begin code section*/
+//Mode = 0; // Normal Operation 
+R_k = 0;
+/*End code section*/"
+                input_terminals = "real I_conv1;real I_conv2;real I_conv3;real I_load;real V_dc_ref;real Mosfet_1;real Mosfet_2;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+{
+    R_obs = 50;
+}
+else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+{
+    R_obs = (50/2);
+}
+else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+{
+    R_obs = (50/3);
+}
+
+//R_obs = (50/3);
+I_convs = I_conv1 + I_conv2 + I_conv3;
+i_ref = V_dc_ref/R_obs;
+delta_i_act = i_ref - I_load;
+I_ref_dem = i_ref;
+//error_i = I_total - I_ref;
+//Delta_I = I_ref_dem - I_convs; // The error between the required current for the load and the MG current
+I_convs_pu = I_convs/I_ref_dem;
+//if (R_k != R_obs)
+//{
+//    Delta_I = 0;
+//}
+//else
+//{
+//    Delta_I = Delta_I;
+//}
+//R_k = R_obs;
+/*End code section*/"
+                output_terminals = "real I_ref_dem;real I_convs;real delta_i_act;real R_obs;"
+                output_terminals_dimensions = "inherit;inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True;True"
+                output_terminals_show_labels = "True;True;True;True"
+            }
+            [
+                position = 7584, 8360
+                size = 200, 304
+            ]
+
+            component "core/Probe" I_convs_pu {
+            }
+            [
+                position = 7840, 8280
+            ]
+
+            component "core/Probe" Iref_demand {
+            }
+            [
+                position = 7656, 8064
+                rotation = down
+            ]
+
+            component "core/Probe" Mode {
+            }
+            [
+                position = 8272, 8040
+            ]
+
+            component "core/Constant" Delta_I_ref {
+                _tunable = "True"
+                execution_rate = "Sample_Time"
+                value = "0"
+            }
+            [
+                position = 8208, 8504
+            ]
+
+            component "core/C function" "C function8" {
+                global_variables = "real I_total;"
+                init_fnc = "/*Begin code section*/
+Mode = 0; // Normal Operation Initially
+/*End code section*/"
+                input_terminals = "real Mode;real I_conv1;real I_conv2;real I_conv3;real I_bat;real Mosfet_1;real Mosfet_2;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+I_convs = I_conv1 + I_conv2 + I_conv3;
+if (Mode == 0)     // Normal Operation
+{
+    I_total = I_convs;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            Delta_I = Imax_m034_z1 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            Delta_I = Imax_m034_z2 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            Delta_I = Imax_m034_z3 - I_total;
+        }
+}
+
+else if (Mode == 1)       //Charging Mode CC
+{
+    I_total = I_convs - I_bat;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            Delta_I = Imax_m12_z1 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            Delta_I = Imax_m12_z2 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            Delta_I = Imax_m12_z3 - I_total;
+        }
+}
+
+else if (Mode == 2)       // Charging Mode CV
+{
+    I_total = I_convs - I_bat;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            Delta_I = Imax_m12_z1 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            Delta_I = Imax_m12_z2 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            Delta_I = Imax_m12_z3 - I_total;
+        }
+}
+
+else if (Mode == 3)    // Discharging Mode - Regulating Current 
+{
+    I_total = I_convs + I_bat;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            Delta_I = Imax_m034_z1 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            Delta_I = Imax_m034_z2 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            Delta_I = Imax_m034_z3 - I_total;
+        }
+}
+else if (Mode == 4)    // Charging Mode
+{
+    I_total = I_bat;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            Delta_I = Imax_m034_z1 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            Delta_I = Imax_m034_z2 - I_total;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            Delta_I = Imax_m034_z3 - I_total;
+        }
+}
+/*End code section*/"
+                output_terminals = "real Delta_I;real I_convs;real R_obs;"
+                output_terminals_dimensions = "inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True"
+                output_terminals_show_labels = "True;True;True"
+                parameters = "real Imax_m034_z1;real Imax_m034_z2;real Imax_m034_z3;real Imax_m12_z1;real Imax_m12_z2;real Imax_m12_z3;"
+            }
+            [
+                position = 7608, 8752
+                size = 48, 128
+            ]
+
+            component "core/Constant" V_dc_ref1 {
+                execution_rate = "Sample_Time"
+                value = "24"
+            }
+            [
+                position = 7280, 8400
+            ]
+
+            component "core/C function" "C function9" {
+                global_variables = "real I_ref;"
+                init_fnc = "/*Begin code section*/
+Mode = 0; // Normal Operation Initially
+/*End code section*/"
+                input_terminals = "real Mode;real I_conv1;real I_conv2;real I_conv3;real I_Bat;real V_dc_ref;real V_bat_ref;real Mosfet_1;real Mosfet_2;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+I_convs = I_conv1 + I_conv2 + I_conv3;
+
+if ((Mode == 0) || (Mode == 3) || (Mode == 4))     // Normal Operation & Dsicharging Modes
+{
+//    I_total = I_convs;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            I_ref = V_dc_ref/R_obs;
+            Delta_I = I_ref - I_convs;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            I_ref = V_dc_ref/R_obs;
+            Delta_I = I_ref - I_convs;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            I_ref = V_dc_ref/R_obs;
+            Delta_I = I_ref - I_convs;
+        }
+}
+
+else if ((Mode == 1) || (Mode == 2))       //Charging Modes CC & CV
+{
+//    I_total = I_convs - I_bat;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            I_ref = V_dc_ref/R_obs;
+            I_Bat = (V_dc_ref*V_dc_ref)/(V_bat_ref*R_obs);
+            Delta_I = (I_ref + I_Bat) - I_convs;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            I_ref = V_dc_ref/R_obs;
+            I_Bat = (V_dc_ref*V_dc_ref)/(V_bat_ref*R_obs);
+            Delta_I = (I_ref + I_Bat) - I_convs;
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            I_ref = V_dc_ref/R_obs;
+            I_Bat = (V_dc_ref*V_dc_ref)/(V_bat_ref*R_obs);
+            Delta_I = (I_ref + I_Bat) - I_convs;
+        }
+}
+/*End code section*/"
+                output_terminals = "real Delta_I;real I_convs;real R_obs;"
+                output_terminals_dimensions = "inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True"
+                output_terminals_show_labels = "True;True;True"
+                parameters = "real Imax_m034_z1;real Imax_m034_z2;real Imax_m034_z3;real Imax_m12_z1;real Imax_m12_z2;real Imax_m12_z3;"
+            }
+            [
+                position = 7408, 8768
+                size = 48, 160
+            ]
+
+            component "core/C function" "C function10" {
+                global_variables = "real I_ref;real delta_i;"
+                init_fnc = "/*Begin code section*/
+//Mode = 0; // Normal Operation Initially
+Delta_I = 0;
+/*End code section*/"
+                input_terminals = "real I_total;real I_conv1;real I_conv2;real I_conv3;real I_bat;real V_dc_ref;real Mosfet_1;real Mosfet_2;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+I_convs = I_conv1 + I_conv2 + I_conv3;
+
+
+else if (V_dc > 5.30) // Regulating DC bus voltage in Normal Operation After Disconnecting Battery 
+{
+    Mode = 0;
+    S_grid = 1;
+    S_DT_3 = 0;
+    S_DT_4 = 0;
+    S_bat = 0;
+    S_DT_0 = 1;
+        if (SOC <= 80)
+    {
+        Mode = 1;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+    else if ((SOC > 80) && (SOC < 100))
+    {
+        Mode = 2;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+        else if (SOC >= 100) // Stop charging
+    {
+        Mode = 0;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 0;
+        S_bat = 0;
+    }
+}
+
+else if (I_convs <= i_min)
+{
+    Mode = 4;
+        S_grid = 0;
+        S_DT_3 = 0;
+        S_DT_4 = 1;
+        S_DT_0 = 0;
+        S_bat = 1;
+}
+
+//    I_total = I_convs;
+    if ((Mosfet_1 != 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 100;
+            I_ref = V_dc_ref/R_obs;
+            delta_i = I_total - I_ref;
+            if (delta_i < i_thresh)
+            {
+                Delta_I = I_ref - I_convs;
+            }
+            else if (delta_i >= i_thresh)
+            {
+                if (I_bat < 0)
+                {
+                    Delta_I = (I_ref + fabs(I_bat)) - I_convs;
+                }
+                else if (I_bat > 0)
+                {
+                    Delta_I = I_ref - I_convs;
+                }
+                else if (I_bat == 0)
+                {
+                    Delta_I = 0;
+                }
+            }
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 != 1))
+        {
+            R_obs = 50;
+            I_ref = V_dc_ref/R_obs;
+            delta_i = I_total - I_ref;
+            if (delta_i < i_thresh)
+            {
+                Delta_I = I_ref - I_convs;
+            }
+            else if (delta_i >= i_thresh)
+            {
+                if (I_bat < 0)
+                {
+                    Delta_I = (I_ref + fabs(I_bat)) - I_convs;
+                }
+                else if (I_bat > 0)
+                {
+                    Delta_I = I_ref - I_convs;
+                }
+                else if (I_bat == 0)
+                {
+                    Delta_I = 0;
+                }
+            }
+        }
+    else if ((Mosfet_1 == 1)&&(Mosfet_2 == 1))
+        {
+            R_obs = 25;
+            I_ref = V_dc_ref/R_obs;
+            delta_i = I_total - I_ref;
+            if (delta_i < i_thresh)
+            {
+                Delta_I = I_ref - I_convs;
+            }
+            else if (delta_i >= i_thresh)
+            {
+                if (I_bat < 0)
+                {
+                    Delta_I = (I_ref + fabs(I_bat)) - I_convs;
+                }
+                else if (I_bat > 0)
+                {
+                    Delta_I = I_ref - I_convs;
+                }
+                else if (I_bat == 0)
+                {
+                    Delta_I = 0;
+                }
+            }
+        }
+/*End code section*/"
+                output_terminals = "real Delta_I;real I_convs;real R_obs;"
+                output_terminals_dimensions = "inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True"
+                output_terminals_show_labels = "True;True;True"
+                parameters = "real Imax_m034_z1;real Imax_m034_z2;real Imax_m034_z3;real Imax_m12_z1;real Imax_m12_z2;real Imax_m12_z3;real i_thresh;"
+            }
+            [
+                position = 7120, 8760
+                size = 48, 144
+            ]
+
+            component "core/Unit Delay" "Unit Delay1" {
+            }
+            [
+                position = 8688, 8008
+                rotation = down
+                hide_name = True
+            ]
+
+            component "core/Unit Delay" "Unit Delay2" {
+            }
+            [
+                position = 8664, 8664
+                rotation = down
+            ]
+
+            component "core/C function" "Advanced C function1" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real I_L_Pre_1;real I_L_Pre_0;real G_1;real G_0;real V_dc_Pre_1;real V_dc_Pre_0;real V_bat_Pre_1;real V_bat_Pre_0;real I_L_ref;real Delta_I_0;real Delta_I_1;"
+                init_fnc = "/*Begin code section*/
+Mode == 0;
+/*End code section*/"
+                input_terminals = "real S_1_bat;real Mode;real V_dc_ref;real V_dc;real I_ref_dem;real I_out_total;real I_c_dc;real V_bat;real V_bat_ref;real I_bat_ref_CC;real I_bat_ref_CV;real I_L;real I_bat;real I_bat_out;real Delta_I_ref;real I_convs;real R_obs;real S_2_bat;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+if (Mode == 1)     // Charging Mode with Contant Current CC 
+{
+
+    I_L_Pre_1 = ((1/L)*T_s*V_dc) + ((1 - ((R_L*T_s)/L))*I_L) - ((T_s/L)*V_bat);
+    G_1 = abs(I_bat_ref_CC - I_L_Pre_1) + Lambda_s_1*abs(1 - S_1_bat);
+    I_L_Pre_0 = ((0/L)*T_s*V_dc) + ((1 - ((R_L*T_s)/L))*I_L) - ((T_s/L)*V_bat);
+    G_0 = abs(I_bat_ref_CC - I_L_Pre_0) + Lambda_s_1*abs(0 - S_1_bat);
+    if (G_1 <= G_0)
+    {
+        S_1_bat_out = 1;
+        S_2_bat_out = 0;
+    }
+    else
+    {
+        S_1_bat_out = 0;
+        S_2_bat_out = 0;
+    }
+}
+
+else if (Mode == 2)     // Charging Mode with Contant Voltage CV 
+{
+
+    I_L_Pre_1 = ((1/L)*T_s*V_dc) + ((1 - ((R_L*T_s)/L))*I_L) - ((T_s/L)*V_bat);
+    V_bat_Pre_1 = ((T_s/C_bat)*(I_L_Pre_1 - I_bat)) + V_bat;
+    G_1 = abs(V_bat_ref - V_bat_Pre_1) + abs(I_bat_ref_CV - I_L_Pre_1) + Lambda_s_2*abs(1 - S_1_bat);
+ 
+    I_L_Pre_0 = ((0/L)*T_s*V_dc) + ((1 - ((R_L*T_s)/L))*I_L) - ((T_s/L)*V_bat);
+    V_bat_Pre_0 = ((T_s/C_bat)*(I_L_Pre_0 - I_bat)) + V_bat;
+    G_0 = abs(V_bat_ref - V_bat_Pre_0) + abs(I_bat_ref_CV - I_L_Pre_0) + Lambda_s_2*abs(0 - S_1_bat);
+    
+    if (G_1 <= G_0)
+    {
+        S_1_bat_out = 1;
+        S_2_bat_out = 0;
+    }
+    else
+    {
+        S_1_bat_out = 0;
+        S_2_bat_out = 0;
+    }
+}
+
+else if (Mode == 3)     // Discharging Mode  - Regulating the DC Bus
+{
+
+//    I_L_ref = (V_dc_ref*V_dc_ref)/(V_bat_ref*R_obs);
+    I_L_Pre_1 = ((T_s/L)*V_bat) - ((1 - 1)*(T_s/L)*V_dc) + ((1 - ((R_L*T_s)/L))*I_L);
+//    V_dc_Pre_1 = ((T_s/C_dc)*(1 - 1)*I_L) + ((1 - (T_s/(C_dc*R_obs)))*V_dc);
+    Delta_I_1 = (I_L_Pre_1) - I_convs;
+    G_1 = abs(I_ref_dem - I_L_Pre_1) + Lambda_s_3*abs(1 - S_2_bat) + abs(Delta_I_ref - Delta_I_1);
+    I_L_Pre_0 = ((T_s/L)*V_bat) - ((1 - 0)*(T_s/L)*V_dc) + ((1 - ((R_L*T_s)/L))*I_L);
+//    V_dc_Pre_0 = ((T_s/C_dc)*(1 - 0)*I_L) + ((1 - (T_s/(C_dc*R_obs)))*V_dc);
+    Delta_I_0 = (I_L_Pre_0) - I_convs;
+    G_0 = abs(I_ref_dem - I_L_Pre_0) + Lambda_s_3*abs(0 - S_2_bat) + abs(Delta_I_ref - Delta_I_0);
+    if (G_1 <= G_0)
+    {
+        S_1_bat_out = 0;
+        S_2_bat_out = 1;
+    }
+    else
+    {
+        S_1_bat_out = 0;
+        S_2_bat_out = 0;
+    }
+}
+
+else if (Mode == 4)     // Discharging Mode - Grid Forming
+{
+//I_L_ref = (V_dc_ref*V_dc_ref)/(V_bat*R_obs);
+    I_L_ref = I_ref_dem;
+//    + I_c_dc
+    I_L_Pre_1 = ((T_s/L)*V_bat) - ((1 - 1)*(T_s/L)*V_dc) + ((1 - ((R_L*T_s)/L))*I_L);
+    V_dc_Pre_1 = ((T_s/C_dc)*(1 - 1)*I_L) + ((1 - (T_s/(C_dc*R_obs)))*V_dc);
+//    Delta_I_1 = (3*I_L_Pre_1) - I_convs;
+    G_1 = abs(I_L_ref - I_L_Pre_1) + abs(V_dc_ref - V_dc_Pre_1) + Lambda_s_4*abs(1 - S_2_bat);
+    I_L_Pre_0 = ((T_s/L)*V_bat) - ((1 - 0)*(T_s/L)*V_dc) + ((1 - ((R_L*T_s)/L))*I_L);
+    V_dc_Pre_0 = ((T_s/C_dc)*(1 - 0)*I_L) + ((1 - (T_s/(C_dc*R_obs)))*V_dc);
+//    Delta_I_0 = (3*I_L_Pre_0) - I_convs;
+    G_0 = abs(I_L_ref - I_L_Pre_0)   + abs(V_dc_ref - V_dc_Pre_0)+ Lambda_s_4*abs(0 - S_2_bat);
+    if (G_1 <= G_0)
+    {
+        S_1_bat_out = 0;
+        S_2_bat_out = 1;
+    }
+    else
+    {
+        S_1_bat_out = 0;
+        S_2_bat_out = 0;
+    }
+}
+else if (Mode == 0)     // Stop Working 
+{
+
+    S_1_bat_out = 0;
+    S_2_bat_out = 0;
+
+}
+/*End code section*/"
+                output_terminals = "real S_1_bat_out;real S_2_bat_out;"
+                output_terminals_dimensions = "inherit;inherit"
+                output_terminals_feedthrough = "True;True"
+                output_terminals_show_labels = "True;True"
+                parameters = "real Lambda_s_1;real T_s;real R_L;real L;real C_bat;real C_dc;real Lambda_i_4;real Lambda_v_4;real Lambda_s_2;real Lambda_s_3;real Lambda_s_4;"
+            }
+            [
+                position = 8656, 8328
+                size = 440, 592
+            ]
+
+            component "core/Probe" S_bat_1 {
+            }
+            [
+                position = 9008, 8072
+            ]
+
+            component "core/Probe" R_observed {
+            }
+            [
+                position = 8000, 8584
+            ]
+
+            component "core/Probe" I_convs {
+            }
+            [
+                position = 7832, 8368
+            ]
+
+            component "core/Probe" S_bat_2 {
+            }
+            [
+                position = 9064, 8488
+            ]
+
+            component "core/Unit Delay" "Unit Delay4" {
+            }
+            [
+                position = 7856, 8144
+                rotation = down
+                hide_name = True
+            ]
+
+            component "core/C function" "C function11" {
+                global_variables = "real I_thresh_low;real I_thresh_high;"
+                init_fnc = "/*Begin code section*/
+Mode = 0;
+/*End code section*/"
+                input_terminals = "real SOC;real V_dc;real V_in;real I_ref_dem;real I_convs;real Mode_feedback;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+I_thresh_low = 0.8*I_ref_dem;
+I_thresh_high = 1.2*I_ref_dem;
+
+
+
+
+else if ((V_dc < V_thresh_low)&&(V_dc > V_thresh_high)) // Regulating DC bus voltage in Normal Operation After Disconnecting Battery 
+{
+     if (SOC <= 80)
+    {
+        Mode = 1;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat_dis = 0;
+        S_bat_ch = 1;
+        S_battery = 1;
+    }
+    else if ((SOC > 80) && (SOC < 100))
+    {
+        Mode = 2;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat_dis = 0;
+        S_bat_ch = 1;
+        S_battery = 1;
+    }
+        else if (SOC >= 100) // Stop charging
+    {
+        Mode = 0;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 0;
+        S_bat_dis = 0;
+        S_bat_ch = 0;
+        S_battery = 0;
+    }
+}
+
+
+
+if ((I_convs >= I_thresh_low) && (I_convs <= I_thresh_high))
+{
+    Mode = 0;
+    S_grid = 1;
+    S_DT_3 = 0;
+    S_DT_0 = 0;
+    S_DT_4 = 0;
+    S_bat = 0;
+}
+
+if ((I_convs >= I_thresh_low) && (I_convs <= I_thresh_high))
+{
+    Mode = 0;
+    S_grid = 1;
+    S_DT_3 = 0;
+    S_DT_0 = 0;
+    S_DT_4 = 0;
+    S_bat = 0;
+}
+
+else if ((V_dc < 4.8)&&(V_dc > 5.2)) // Regulating DC bus voltage in Normal Operation After Disconnecting Battery 
+{
+     if (SOC <= 80)
+    {
+        Mode = 1;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+    else if ((SOC > 80) && (SOC < 100))
+    {
+        Mode = 2;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+        else if (SOC >= 100) // Stop charging
+    {
+        Mode = 0;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 0;
+        S_bat = 0;
+    }
+}
+
+else if ((V_dc < 4.8)&&(V_dc > 5.2)) // Regulating DC bus voltage in Normal Operation After Disconnecting Battery 
+{
+    Mode = 0;
+    S_grid = 1;
+    S_DT_3 = 0;
+    S_DT_4 = 0;
+    S_bat = 0;
+    S_DT_0 = 1;
+        if (SOC <= 80)
+    {
+        Mode = 1;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+    else if ((SOC > 80) && (SOC < 100))
+    {
+        Mode = 2;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+        else if (SOC >= 100) // Stop charging
+    {
+        Mode = 0;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 0;
+        S_bat = 0;
+    }
+}
+
+else if ((Mode_feedback == 4) && (V_in > 9))
+{
+        if (SOC <= 80)
+    {
+        Mode = 1;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+    else if ((SOC > 80) && (SOC < 100))
+    {
+        Mode = 2;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+}
+
+else if ((V_dc < 4) || (V_in < 5)) // Forming the DC bus 
+{
+    Mode = 4;
+    S_grid = 0;
+    S_DT_3 = 0;
+    S_DT_4 = 1;
+    S_DT_0 = 0;
+    S_bat = 1;
+}
+
+else if ((I_convs < I_thresh_low ) )       // Discharging Modes
+{
+    if (I_convs > i_min)
+    {
+        Mode = 3;
+        S_grid = 1;
+        S_DT_3 = 1;
+        S_DT_4 = 0;
+        S_DT_0 = 0;
+        S_bat = 1;
+    }
+    else
+    {
+        Mode = 4;
+        S_grid = 0;
+        S_DT_3 = 0;
+        S_DT_4 = 1;
+        S_DT_0 = 0;
+        S_bat = 1;
+    }
+}
+
+
+
+else if ((I_convs > I_thresh_high))    // Charging Mode
+{
+        if (SOC <= 80)
+    {
+        Mode = 1;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+    else if ((SOC > 80) && (SOC < 100))
+    {
+        Mode = 2;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 1;
+        S_bat = 1;
+    }
+        else if (SOC >= 100) // Stop charging
+    {
+        Mode = 0;
+        S_grid = 1;
+        S_DT_3 = 0;
+        S_DT_4 = 0;
+        S_DT_0 = 0;
+        S_bat = 0;
+    }
+}
+/*End code section*/"
+                output_terminals = "real S_grid;real S_DT_0;real S_DT_3;real S_DT_4;real S_bat;real Mode;"
+                output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit"
+                output_terminals_feedthrough = "True;True;True;True;True;True"
+                output_terminals_show_labels = "True;True;True;True;True;True"
+                parameters = "real i_min;"
+            }
+            [
+                position = 7864, 8736
+                hide_name = True
+                size = 136, 168
+            ]
+
+            component "core/Abs" Abs1 {
+            }
+            [
+                position = 7384, 8080
+                hide_name = True
+            ]
+
+            component "core/Abs" Abs2 {
+            }
+            [
+                position = 7392, 8120
+                hide_name = True
+            ]
+
+            component "core/Abs" Abs3 {
+            }
+            [
+                position = 7384, 8160
+                hide_name = True
+            ]
+
+            component "core/Abs" Abs4 {
+            }
+            [
+                position = 7400, 8200
+                hide_name = True
+            ]
+
+            component "core/Constant" V_dc_ref2 {
+                execution_rate = "Sample_Time"
+                value = "24"
+            }
+            [
+                position = 7600, 7920
+            ]
+
+            component "core/Discrete State Space" "Discrete State Space1" {
+            }
+            [
+                position = 7048, 8192
+            ]
+
+            component "core/Constant" I_bat_ref_cc {
+                _tunable = "True"
+                execution_rate = "Sample_Time"
+                value = "-1"
+            }
+            [
+                position = 8320, 8344
+            ]
+
+            component "core/Constant" I_bat_ref_cv {
+                _tunable = "True"
+                execution_rate = "Sample_Time"
+                value = "-0.5"
+            }
+            [
+                position = 8376, 8376
+            ]
+
+            component "core/Probe" I_ref_demand {
+            }
+            [
+                position = 7984, 8152
+            ]
+
+            component "core/Abs" Abs5 {
+            }
+            [
+                position = 8064, 8408
+            ]
+
+            component "core/Abs" Abs6 {
+            }
+            [
+                position = 8288, 8440
+            ]
+
+            component "core/Abs" Abs7 {
+            }
+            [
+                position = 8288, 8248
+            ]
+
+            component "core/Abs" Abs8 {
+            }
+            [
+                position = 8080, 8472
+            ]
+
+            component "core/Abs" Abs9 {
+            }
+            [
+                position = 8112, 8536
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter1" {
+                frequency = "250"
+            }
+            [
+                position = 8144, 8280
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter2" {
+                frequency = "250"
+            }
+            [
+                position = 8192, 8152
+            ]
+
+            tag From31 {
+                value = "Iout_Total"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7320, 8360
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From32 {
+                value = "Vout"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8096, 8152
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From33 {
+                value = "Mosfet_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7416, 8440
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From34 {
+                value = "Mosfet_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7416, 8480
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From35 {
+                value = "Iout_1"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7320, 8240
+                hide_name = True
+                size = 59, 20
+            ]
+
+            tag From36 {
+                value = "Iout_2"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7320, 8280
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From25 {
+                value = "SOC_bat"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7704, 7888
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From37 {
+                value = "Iout_3"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7320, 8320
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From38 {
+                value = "I_L_Bat"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8000, 8408
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From39 {
+                value = "I_Bat"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8216, 8440
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From40 {
+                value = "V_Bat"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 8280
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto4 {
+                value = "S_grid"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8080, 7888
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto5 {
+                value = "S_battery_discharge"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8088, 8008
+                hide_name = True
+                size = 81, 20
+            ]
+
+            tag Goto7 {
+                value = "S_DT_3"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8096, 7936
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From43 {
+                value = "Vout"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7712, 7952
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto2 {
+                value = "S_1_bat"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9048, 7984
+                size = 60, 20
+            ]
+
+            tag Goto10 {
+                value = "delta_i_act"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7744, 8408
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto11 {
+                value = "S_DT_0"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8008, 7912
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto13 {
+                value = "S_2_bat"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9088, 8568
+                size = 60, 20
+            ]
+
+            tag Goto14 {
+                value = "S_DT_4"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8008, 7960
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From48 {
+                value = "Vin"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7664, 7984
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto15 {
+                value = "S_battery_charge"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8016, 8032
+                hide_name = True
+                size = 76, 20
+            ]
+
+            tag Goto16 {
+                value = "S_battery"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8088, 8056
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From49 {
+                value = "Iout_Total"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8064, 8216
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From50 {
+                value = "I_C_DC"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8224, 8248
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto18 {
+                value = "S_DT_ch"
+                scope = global
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8000, 7984
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From51 {
+                value = "I_Bat_out"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8000, 8472
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From52 {
+                value = "I_convs_total"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7984, 8528
+                hide_name = True
+                size = 60, 20
+            ]
+
+            junction Junction179 sp
+            [
+                position = 7736, 8064
+            ]
+
+            junction Junction188 sp
+            [
+                position = 7752, 8312
+            ]
+
+            junction Junction193 sp
+            [
+                position = 8952, 8064
+            ]
+
+            junction Junction194 sp
+            [
+                position = 8888, 8064
+            ]
+
+            junction Junction195 sp
+            [
+                position = 9032, 8528
+            ]
+
+            junction Junction196 sp
+            [
+                position = 8888, 8576
+            ]
+
+            junction Junction197 sp
+            [
+                position = 7736, 8224
+            ]
+
+            junction Junction199 sp
+            [
+                position = 7928, 8528
+            ]
+
+            junction Junction200 sp
+            [
+                position = 7936, 8096
+            ]
+
+            junction Junction201 sp
+            [
+                position = 8216, 8096
+            ]
+
+            junction Junction203 sp
+            [
+                position = 7928, 8192
+            ]
+
+            connect From33 "C function7.Mosfet_1" as Connection1946
+            connect From34 "C function7.Mosfet_2" as Connection1947
+            connect From25 "C function6.SOC" as Connection1949
+            connect "C function6.S_grid" Goto4 as Connection2004
+            connect Goto7 "C function6.S_DT_3" as Connection2123
+            connect V_dc_ref1.out "C function7.V_dc_ref" as Connection2188
+            connect "Unit Delay1.out" "Advanced C function1.S_1_bat" as Connection1975
+            connect "Unit Delay2.out" "Advanced C function1.S_2_bat" as Connection1990
+            connect V_dc_ref.out "Advanced C function1.V_dc_ref" as Connection2309
+            connect V_bat_ref.out "Advanced C function1.V_bat_ref" as Connection2312
+            connect Delta_I_ref.out "Advanced C function1.Delta_I_ref" as Connection2315
+            connect "C function6.S_DT_0" Goto11 as Connection2371
+            connect Iref_demand.in Junction179 as Connection2374
+            connect "C function6.I_ref_dem" Junction179 as Connection2376
+            connect Goto10 "C function7.delta_i_act" as Connection2378
+            connect "C function6.S_bat_dis" Goto5 as Connection2407
+            connect "C function6.S_DT_4" Goto14 as Connection2408
+            connect From43 "C function6.V_dc" as Connection2430
+            connect From48 "C function6.V_in" as Connection2431
+            connect "Unit Delay4.out" "C function6.Mode_feedback" as Connection2449
+            connect Junction188 "C function7.I_convs" as Connection2457
+            connect "C function6.I_convs" Junction188 as Connection2458
+            connect From35 "C function7.I_conv1" as Connection2467
+            connect From36 "C function7.I_conv2" as Connection2468
+            connect From37 "C function7.I_conv3" as Connection2469
+            connect From31 "C function7.I_load" as Connection2470
+            connect "C function6.S_bat_ch" Goto15 as Connection2471
+            connect "C function6.S_battery" Goto16 as Connection2472
+            connect V_dc_ref2.out "C function6.V_dc_ref" as Connection2473
+            connect Goto2 Junction193 as Connection2488
+            [
+                breakpoints = 9048, 7984; 8992, 7984; 8952, 7984; 8952, 7984; 8952, 7984; 8952, 7984; 8952, 8008; 8952, 8040; 8952, 8040
+            ]
+            connect Junction193 S_bat_1.in as Connection2489
+            connect "Advanced C function1.S_1_bat_out" Junction194 as Connection2491
+            connect Junction194 Junction193 as Connection2492
+            connect "Unit Delay1.in" Junction194 as Connection2493
+            [
+                breakpoints = 8920, 8008; 8920, 8064
+            ]
+            connect S_bat_2.in Junction195 as Connection2495
+            connect Junction195 Goto13 as Connection2496
+            [
+                breakpoints = 9032, 8576; 9032, 8568
+            ]
+            connect "Advanced C function1.S_2_bat_out" Junction196 as Connection2498
+            connect Junction196 Junction195 as Connection2499
+            connect "Unit Delay2.in" Junction196 as Connection2500
+            connect Junction179 Junction197 as Connection2524
+            [
+                breakpoints = 7736, 8112; 7736, 8112; 7736, 8128; 7736, 8128; 7736, 8176
+            ]
+            connect Junction197 "C function7.I_ref_dem" as Connection2525
+            [
+                breakpoints = 7736, 8232; 7736, 8232
+            ]
+            connect "C function7.R_obs" Junction199 as Connection2543
+            [
+                breakpoints = 7704, 8528; 7928, 8528
+            ]
+            connect Junction199 R_observed.in as Connection2544
+            [
+                breakpoints = 7928, 8528
+            ]
+            connect "Advanced C function1.R_obs" Junction199 as Connection2545
+            [
+                breakpoints = 8032, 8568; 7928, 8568
+            ]
+            connect "Unit Delay4.in" Junction200 as Connection2549
+            [
+                breakpoints = 7952, 8144; 7952, 8096
+            ]
+            connect Junction200 "C function6.Mode" as Connection2550
+            [
+                breakpoints = 7936, 8096
+            ]
+            connect "Advanced C function1.Mode" Junction201 as Connection2552
+            connect Junction201 Junction200 as Connection2553
+            connect Mode.in Junction201 as Connection2554
+            connect Goto18 "C function6.S_DT_ch" as Connection2581
+            connect "Advanced C function1.I_ref_dem" Junction203 as Connection2582
+            [
+                breakpoints = 8416, 8192; 8216, 8192; 8216, 8192
+            ]
+            connect Junction203 Junction197 as Connection2583
+            [
+                breakpoints = 7872, 8192; 7872, 8200; 7872, 8216; 7736, 8216; 7736, 8224; 7736, 8224
+            ]
+            connect I_ref_demand.in Junction203 as Connection2584
+            connect From38 Abs5.in as Connection2606
+            connect From39 Abs6.in as Connection2608
+            connect From50 Abs7.in as Connection2610
+            connect I_bat_ref_cc.out "Advanced C function1.I_bat_ref_CC" as Connection2612
+            connect I_bat_ref_cv.out "Advanced C function1.I_bat_ref_CV" as Connection2613
+            connect From51 Abs8.in as Connection2617
+            connect Abs8.out "Advanced C function1.I_bat_out" as Connection2646
+            connect Abs6.out "Advanced C function1.I_bat" as Connection2647
+            connect Abs7.out "Advanced C function1.I_c_dc" as Connection2649
+            connect From49 "Advanced C function1.I_out_total" as Connection2651
+            connect Junction188 I_convs.in as Connection2656
+            [
+                breakpoints = 7752, 8312; 7752, 8312; 7752, 8312; 7752, 8312; 7784, 8392; 7784, 8392; 7784, 8392; 7784, 8392; 7784, 8384; 7784, 8384; 7784, 8392; 7784, 8392; 7784, 8368; 7784, 8368
+            ]
+            connect Abs9.in From52 as Connection2664
+            connect Abs5.out "Advanced C function1.I_L" as Connection2672
+            connect Abs9.out "Advanced C function1.I_convs" as Connection2673
+            connect From40 "Low-Pass Filter1.in" as Connection2674
+            connect "Low-Pass Filter1.out" "Advanced C function1.V_bat" as Connection2675
+            connect From32 "Low-Pass Filter2.in" as Connection2676
+            connect "Low-Pass Filter2.out" "Advanced C function1.V_dc" as Connection2677
+        }
+        [
+            position = 2720, 2376
+            size = 176, 184
+        ]
+
+        component "core/Probe" Ibi_out {
+        }
+        [
+            position = 3736, 1864
+            rotation = down
+        ]
+
+        component "core/Current Measurement" I_bat_out {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 3848, 1864
+            rotation = left
+            size = 64, 32
+        ]
+
+        component "core/Inductor" L6 {
+            inductance = "L"
+        }
+        [
+            position = 3848, 2648
+            rotation = left
+        ]
+
+        component "core/Capacitor" Cdc {
+            capacitance = "C_dc"
+        }
+        [
+            position = 4064, 1928
+            rotation = down
+        ]
+
+        component "core/Probe" Bat_SOC {
+        }
+        [
+            position = 3224, 2920
+            rotation = down
+        ]
+
+        component "core/Capacitor" Cbat {
+            capacitance = "C_bat"
+        }
+        [
+            position = 3984, 2768
+            rotation = down
+        ]
+
+        component "core/Current Measurement" I_5 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 3848, 2944
+            rotation = left
+            size = 64, 32
+        ]
+
+        component "core/Probe" Ibat1 {
+        }
+        [
+            position = 3744, 2984
+            rotation = down
+        ]
+
+        component "core/Current Measurement" I_6 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 3848, 2576
+            rotation = left
+            size = 64, 32
+        ]
+
+        component "core/Probe" IL_bat {
+        }
+        [
+            position = 3744, 2616
+            rotation = down
+        ]
+
+        component "core/Voltage Measurement" V_bat {
+            bw_limit = "True"
+            execution_rate = "Sample_Time"
+            frequency = "10"
+            sig_output = "True"
+        }
+        [
+            position = 4016, 2904
+            size = 64, 32
+        ]
+
+        component "core/Probe" V_bat1 {
+        }
+        [
+            position = 4096, 2864
+        ]
+
+        component "core/Voltage Measurement" Vin1 {
+            bw_limit = "True"
+            execution_rate = "Sample_Time"
+            frequency = "10"
+            sig_output = "True"
+        }
+        [
+            position = 1888, 1152
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Probe" Vin2 {
+        }
+        [
+            position = 1968, 1152
+        ]
+
+        component "core/Constant" V_in {
+            _tunable = "True"
+            execution_rate = "Sample_Time"
+            value = "48"
+        }
+        [
+            position = 1784, 1176
+            rotation = down
+        ]
+
+        component "core/Current Measurement" Iconvs {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 3376, 1056
+            size = 64, 32
+        ]
+
+        component "core/Probe" Iout_Convs_Total {
+        }
+        [
+            position = 3320, 1008
+            rotation = down
+        ]
+
+        component "core/Signal Controlled Voltage Source" Vsp1 {
+            execution_rate = "Sample_Time"
+        }
+        [
+            position = 1712, 1152
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Double Pole Single Throw Contactor" S12 {
+            ctrl_src = "Model"
+        }
+        [
+            position = 3656, 1152
+            size = 64, 256
+        ]
+
+        component "core/Probe" S_grid6 {
+        }
+        [
+            position = 3664, 944
+        ]
+
+        component "core/Single Phase Core Coupling" "Core Coupling 2" {
+            fixed_snb_i = "true"
+            fixed_snb_u = "true"
+            snb_type_i = "R1"
+            snb_type_u = "R2"
+        }
+        [
+            position = 3936, 1608
+            rotation = left
+            scale = -1, 1
+            size = 12, 256
+        ]
+
+        component "core/Resistor" Rsnb1 {
+            resistance = "1e-3"
+        }
+        [
+            position = 2648, 1248
+        ]
+
+        component "core/Resistor" Rsnb2 {
+            resistance = "1e-3"
+        }
+        [
+            position = 2656, 1624
+        ]
+
+        component "core/Resistor" Rsnb3 {
+            resistance = "1e-3"
+        }
+        [
+            position = 2648, 2024
+        ]
+
+        component "core/Probe" s_battery {
+        }
+        [
+            position = 3704, 1544
+            rotation = down
+        ]
+
+        component "core/Probe" S_battery_discharge1 {
+        }
+        [
+            position = 3864, 2336
+        ]
+
+        component "core/Double Pole Single Throw Contactor" S20 {
+            ctrl_src = "Model"
+        }
+        [
+            position = 3936, 1416
+            rotation = left
+            size = 64, 256
+        ]
+
+        component "core/Resistor" Rsnb5 {
+            resistance = "1e-3"
+        }
+        [
+            position = 4032, 1536
+            rotation = right
+        ]
+
+        component "core/Resistor" Rsnb8 {
+            resistance = "1e-3"
+        }
+        [
+            position = 4032, 1720
+            rotation = right
+        ]
+
+        component "core/Probe" Iin3 {
+        }
+        [
+            position = 2040, 912
+        ]
+
+        component "core/Current Measurement" I_c_dc {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 3984, 1928
+            size = 64, 32
+        ]
+
+        component "core/Resistor" Rload14 {
+            resistance = "0.15"
+        }
+        [
+            position = 3848, 2720
+            rotation = left
+        ]
+
+        component "core/Boost" Boost1 {
+            ctrl_src = "Model"
+            fvd_def_method = "LUT"
+            signal_access = "Inherit"
+        }
+        [
+            position = 4016, 2256
+            rotation = left
+            size = 128, 256
+        ]
+
+        component "core/Buck" Buck1 {
+            ctrl_src = "Model"
+            fvd_def_method = "LUT"
+            signal_access = "Inherit"
+        }
+        [
+            position = 3624, 2248
+            rotation = right
+            scale = -1, 1
+            size = 127, 256
+        ]
+
+        component "core/Double Pole Single Throw Contactor" S21 {
+            ctrl_src = "Model"
+        }
+        [
+            position = 4016, 2456
+            rotation = left
+            size = 64, 256
+        ]
+
+        component "core/Double Pole Single Throw Contactor" S22 {
+            ctrl_src = "Model"
+        }
+        [
+            position = 3624, 2456
+            rotation = left
+            size = 64, 256
+        ]
+
+        component "core/Probe" S_battery_charge {
+        }
+        [
+            position = 3464, 2496
+        ]
+
+        component "core/Current Measurement" I_7 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 2808, 1056
+            size = 64, 32
+        ]
+
+        component "core/Probe" I_L1 {
+        }
+        [
+            position = 2856, 984
+        ]
+
+        component "core/Current Measurement" I_8 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 2824, 1432
+            size = 64, 32
+        ]
+
+        component "core/Probe" I_L2 {
+        }
+        [
+            position = 2872, 1360
+        ]
+
+        component "core/Current Measurement" I_9 {
+            execution_rate = "Sample_Time"
+            sig_output = "True"
+        }
+        [
+            position = 2808, 1832
+            size = 64, 32
+        ]
+
+        component "core/Probe" I_L3 {
+        }
+        [
+            position = 2848, 1768
+        ]
+
+        component "core/Resistor" Rsnb12 {
+            resistance = "1e-3"
+        }
+        [
+            position = 3720, 2400
+            rotation = right
+        ]
+
+        component "core/Resistor" Rsnb13 {
+            resistance = "1e-3"
+        }
+        [
+            position = 4112, 2392
+            rotation = right
+        ]
+
+        component "core/Double Pole Single Throw Contactor" S24 {
+            ctrl_src = "Model"
+        }
+        [
+            position = 3624, 2120
+            rotation = left
+            size = 64, 256
+        ]
+
+        component "core/Battery Cell" "Battery Cell1" {
+            I_dis = "1.5"
+            Q_discharge = "[14.592, 7.5, 14.444]"
+            execution_rate = "Sample_Time"
+            meas_Icell = "True"
+            meas_Q = "True"
+            meas_SOC = "True"
+            meas_SOH = "True"
+            nom_Q_combo = "Discharge capacity"
+            thermal_flag = "False"
+        }
+        [
+            position = 3920, 3080
+            rotation = left
+            size = 32, 64
+        ]
+
+        component "core/Constant" V_in1 {
+            _tunable = "True"
+            execution_rate = "Sample_Time"
+            value = "25"
+        }
+        [
+            position = 4176, 3184
+            rotation = down
+        ]
+
+        component "core/Constant" V_in2 {
+            _tunable = "True"
+            execution_rate = "Sample_Time"
+            value = "100"
+        }
+        [
+            position = 3312, 3104
+            rotation = down
+        ]
+
+        component "core/Battery Cell" "Battery Cell4" {
+            I_dis = "1.5"
+            Q_discharge = "[14.592, 7.5, 14.444]"
+            execution_rate = "Sample_Time"
+            meas_Icell = "True"
+            meas_Q = "True"
+            meas_SOC = "True"
+            meas_SOH = "True"
+            nom_Q_combo = "Discharge capacity"
+            thermal_flag = "False"
+        }
+        [
+            position = 4008, 3080
+            rotation = left
+            size = 32, 64
+        ]
+
+        component "core/Battery Cell" "Battery Cell5" {
+            I_dis = "1.5"
+            Q_discharge = "[14.592, 7.5, 14.444]"
+            execution_rate = "Sample_Time"
+            meas_Icell = "True"
+            meas_Q = "True"
+            meas_SOC = "True"
+            meas_SOH = "True"
+            nom_Q_combo = "Discharge capacity"
+            thermal_flag = "False"
+        }
+        [
+            position = 4128, 3080
+            rotation = left
+            size = 32, 64
+        ]
+
+        component "core/SCADA Input" SOC {
+            def_value = "1"
+            execution_rate = "Sample_Time"
+            unit = ""
+        }
+        [
+            position = 3224, 2976
+        ]
+
+        component "core/Output Settings" "Output Settings1" {
+            analog_outputs = "[\'AO9;..MOSFET_1.value;1;0.00;False;-10;10\', \'AO10;..MOSFET_2.value;1;0.00;False;-10;10\']"
+        }
+        [
+            position = 3152, 2376
+        ]
+
+        component "core/Gain" Gain17 {
+            gain = "100"
+        }
+        [
+            position = 3312, 2976
+        ]
+
+        component "core/Low-Pass Filter" "Low-Pass Filter2" {
+            execution_rate = "Sample_Time"
+            frequency = "250"
+        }
+        [
+            position = 4096, 1136
+        ]
+
+        component "core/Resistor" Rsnb14 {
+            resistance = "1e-3"
+        }
+        [
+            position = 4176, 2648
+            rotation = right
+        ]
+
+        tag From1 {
+            value = "S_1"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 2392, 976
+            size = 60, 20
+        ]
+
+        tag From2 {
+            value = "S_2"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 2400, 1344
+            size = 60, 20
+        ]
+
+        tag From3 {
+            value = "S_3"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 2408, 1736
+            size = 60, 20
+        ]
+
+        tag Goto4 {
+            value = "Iout_3"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 2976, 1744
+            size = 60, 20
+        ]
+
+        tag Goto5 {
+            value = "Iout_1"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 2992, 968
+            size = 60, 20
+        ]
+
+        tag Goto6 {
+            value = "Iout_2"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 2992, 1336
+            size = 60, 20
+        ]
+
+        tag Goto7 {
+            value = "Vout"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 4184, 1200
+            size = 60, 20
+        ]
+
+        tag Goto13 {
+            value = "Iout_Total"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 4240, 952
+            size = 60, 20
+        ]
+
+        tag Goto14 {
+            value = "Mosfet_1"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 4560, 944
+            size = 60, 20
+        ]
+
+        tag Goto15 {
+            value = "Mosfet_2"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 4752, 984
+            size = 60, 20
+        ]
+
+        tag Goto16 {
+            value = "SOC_bat"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 3416, 2920
+            size = 60, 20
+        ]
+
+        tag Goto17 {
+            value = "I_Bat_out"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 3728, 1816
+            rotation = down
+            size = 60, 20
+        ]
+
+        tag Goto18 {
+            value = "I_Bat"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 3736, 2936
+            rotation = down
+            size = 60, 20
+        ]
+
+        tag Goto19 {
+            value = "I_L_Bat"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 3736, 2568
+            rotation = down
+            size = 60, 20
+        ]
+
+        tag Goto20 {
+            value = "V_Bat"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 4136, 2832
+            size = 60, 20
+        ]
+
+        tag Goto21 {
+            value = "Vin"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 1984, 1208
+            size = 60, 20
+        ]
+
+        tag Goto22 {
+            value = "I_convs_total"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 3304, 968
+            rotation = down
+            size = 60, 20
+        ]
+
+        tag From34 {
+            value = "S_grid"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3576, 984
+            size = 60, 20
+        ]
+
+        tag From36 {
+            value = "S_battery"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3632, 1472
+            size = 60, 20
+        ]
+
+        tag Goto23 {
+            value = "Iin"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 2056, 968
+            size = 60, 20
+        ]
+
+        tag Goto24 {
+            value = "I_C_DC"
+            scope = global
+            kind = sp
+            direction = in
+        }
+        [
+            position = 4040, 1856
+            size = 60, 20
+        ]
+
+        tag From37 {
+            value = "S_1_bat"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3400, 2240
+            size = 60, 20
+        ]
+
+        tag From38 {
+            value = "S_2_bat"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3824, 2256
+            size = 60, 20
+        ]
+
+        tag From39 {
+            value = "S_battery_discharge"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3792, 2400
+            size = 60, 20
+        ]
+
+        tag From40 {
+            value = "S_battery_charge"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3400, 2440
+            size = 60, 20
+        ]
+
+        tag From44 {
+            value = "S_battery_charge"
+            scope = global
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3408, 2128
+            size = 60, 20
+        ]
+
+        tag From45 {
+            value = "Battery Cell1.SOC"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 3192, 3064
+            size = 60, 20
+        ]
+
+        junction Junction8 pe
+        [
+            position = 4280, 1248
+        ]
+
+        junction Junction9 pe
+        [
+            position = 4408, 1248
+        ]
+
+        junction Junction44 sp
+        [
+            position = 2928, 1008
+        ]
+
+        junction Junction45 sp
+        [
+            position = 4144, 1136
+        ]
+
+        junction Junction64 sp
+        [
+            position = 4184, 1008
+        ]
+
+        junction Junction80 pe
+        [
+            position = 2328, 1056
+        ]
+
+        junction Junction83 pe
+        [
+            position = 2304, 1432
+        ]
+
+        junction Junction84 pe
+        [
+            position = 2304, 1624
+        ]
+
+        junction Junction85 pe
+        [
+            position = 2296, 1248
+        ]
+
+        junction Junction89 pe
+        [
+            position = 2864, 1056
+        ]
+
+        junction Junction94 pe
+        [
+            position = 2864, 1832
+        ]
+
+        junction Junction135 pe
+        [
+            position = 2224, 1432
+        ]
+
+        junction Junction136 pe
+        [
+            position = 2304, 1832
+        ]
+
+        junction Junction137 pe
+        [
+            position = 2304, 2024
+        ]
+
+        junction Junction1607 pe
+        [
+            position = 4104, 1056
+        ]
+
+        junction Junction1611 sp
+        [
+            position = 4632, 1040
+        ]
+
+        junction Junction1616 sp
+        [
+            position = 3792, 1864
+        ]
+
+        junction Junction1630 sp
+        [
+            position = 3808, 2984
+        ]
+
+        junction Junction1635 sp
+        [
+            position = 4016, 2840
+        ]
+
+        junction Junction1636 sp
+        [
+            position = 1928, 1152
+        ]
+
+        junction Junction1665 sp
+        [
+            position = 3376, 1008
+        ]
+
+        junction Junction1724 sp
+        [
+            position = 3624, 984
+        ]
+
+        junction Junction1732 pe
+        [
+            position = 2856, 1248
+        ]
+
+        junction Junction1734 pe
+        [
+            position = 2872, 1624
+        ]
+
+        junction Junction1735 pe
+        [
+            position = 3408, 1624
+        ]
+
+        junction Junction1736 pe
+        [
+            position = 2864, 2024
+        ]
+
+        junction Junction1746 pe
+        [
+            position = 3216, 1056
+        ]
+
+        junction Junction1753 pe
+        [
+            position = 3224, 1432
+        ]
+
+        junction Junction1754 sp
+        [
+            position = 2936, 1376
+        ]
+
+        junction Junction1755 sp
+        [
+            position = 2904, 1800
+        ]
+
+        junction Junction1773 pe
+        [
+            position = 1712, 1248
+        ]
+
+        junction Junction1780 pe
+        [
+            position = 1888, 1056
+        ]
+
+        junction Junction1786 pe
+        [
+            position = 4104, 1248
+        ]
+
+        junction Junction1819 pe
+        [
+            position = 3840, 1056
+        ]
+
+        junction Junction1821 pe
+        [
+            position = 2224, 1056
+        ]
+
+        junction Junction1823 sp
+        [
+            position = 2008, 968
+        ]
+
+        junction Junction1834 pe
+        [
+            position = 4032, 1248
+        ]
+
+        junction Junction1835 pe
+        [
+            position = 3408, 1248
+        ]
+
+        junction Junction1843 pe
+        [
+            position = 3864, 2896
+        ]
+
+        junction Junction1849 sp
+        [
+            position = 3808, 2568
+        ]
+
+        junction Junction1860 sp
+        [
+            position = 3728, 1472
+        ]
+
+        junction Junction1864 pe
+        [
+            position = 3848, 1920
+        ]
+
+        junction Junction1868 pe
+        [
+            position = 4280, 1056
+        ]
+
+        junction Junction1869 pe
+        [
+            position = 4408, 1056
+        ]
+
+        junction Junction1870 sp
+        [
+            position = 3840, 2400
+        ]
+
+        junction Junction1872 pe
+        [
+            position = 3848, 2520
+        ]
+
+        junction Junction1873 sp
+        [
+            position = 3448, 2440
+        ]
+
+        junction Junction1878 pe
+        [
+            position = 2872, 1432
+        ]
+
+        junction Junction1883 pe
+        [
+            position = 3848, 1920
+        ]
+
+        junction Junction1884 pe
+        [
+            position = 3848, 2768
+        ]
+
+        junction Junction1887 sp
+        [
+            position = 4000, 3184
+        ]
+
+        junction Junction1888 sp
+        [
+            position = 4120, 3184
+        ]
+
+        junction Junction1889 sp
+        [
+            position = 3368, 2920
+        ]
+
+        junction Junction1893 pe
+        [
+            position = 4112, 1928
+        ]
+
+        junction Junction1894 pe
+        [
+            position = 4200, 2088
+        ]
+
+        junction Junction1895 pe
+        [
+            position = 4112, 2496
+        ]
+
+        junction Junction1896 pe
+        [
+            position = 4112, 2768
+        ]
+
+        junction Junction1897 sp
+        [
+            position = 4440, 1008
+        ]
+
+        junction Junction1898 sp
+        [
+            position = 4440, 1120
+        ]
+
+        junction Junction1899 sp
+        [
+            position = 4584, 1112
+        ]
+
+        junction Junction1900 pe
+        [
+            position = 4176, 2904
+        ]
+
+        comment Comment1 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Changed position</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">and parameterization </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">of the coupling  </p></body></html> ENDCOMMENT 
+        [
+            position = 3464, 1304
+        ]
+
+        comment Comment2 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Changed position</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">and parameterization </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">of the coupling  </p></body></html> ENDCOMMENT 
+        [
+            position = 4224, 1568
+        ]
+
+        comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Added manual snubber</p></body></html> ENDCOMMENT 
+        [
+            position = 2576, 1288
+        ]
+
+        comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Added manual snubber</p></body></html> ENDCOMMENT 
+        [
+            position = 2584, 1656
+        ]
+
+        comment Comment6 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Added manual snubber</p></body></html> ENDCOMMENT 
+        [
+            position = 2584, 2056
+        ]
+
+        connect Junction9 Junction8 as Connection13
+        [
+            breakpoints = 4344, 1248
+        ]
+        connect Rload1.n_node Junction8 as Connection21
+        [
+            breakpoints = 4280, 1248; 4280, 1248
+        ]
+        connect Rload2.n_node Junction9 as Connection22
+        [
+            breakpoints = 4408, 1248; 4408, 1248
+        ]
+        connect From1 buck0.s_ctrl as Connection168
+        connect From2 buck1.s_ctrl as Connection169
+        connect From3 buck2.s_ctrl as Connection170
+        connect I_1.out Junction44 as Connection204
+        connect Junction44 Iout_1.in as Connection205
+        connect Goto5 Junction44 as Connection206
+        connect Junction45 Vout_Total.in as Connection209
+        connect Goto7 Junction45 as Connection210
+        connect Iout_Total.in Junction64 as Connection335
+        connect Junction64 Iout.out as Connection336
+        connect Goto13 Junction64 as Connection337
+        connect Rload7.p_node Cout4.p_node as Connection469
+        connect buck0.a_in Junction80 as Connection472
+        [
+            breakpoints = 2352, 1056; 2352, 1056
+        ]
+        connect Rload7.n_node Junction80 as Connection474
+        connect Rload8.p_node Cout5.p_node as Connection478
+        connect buck1.a_in Junction83 as Connection482
+        connect Rload8.n_node Junction83 as Connection484
+        connect buck1.b_in Junction84 as Connection485
+        [
+            breakpoints = 2384, 1624
+        ]
+        connect Junction84 gnd2.node as Connection486
+        connect Cout5.n_node Junction84 as Connection487
+        connect Cout4.n_node Junction85 as Connection489
+        connect Junction85 gnd1.node as Connection490
+        connect Rload9.p_node Cout6.p_node as Connection492
+        connect Rload4.p_node L1.p_node as Connection419
+        connect Rload4.n_node buck0.a_out as Connection506
+        connect Cout1.n_node Rload6.n_node as Connection428
+        connect Cout1.p_node Junction89 as Connection508
+        connect I_1.p_node Junction89 as Connection510
+        connect Rload10.p_node L4.p_node as Connection518
+        connect Cout7.n_node Rload11.n_node as Connection519
+        connect buck1.a_out Rload10.n_node as Connection523
+        connect Rload12.p_node L5.p_node as Connection534
+        connect Cout8.n_node Rload13.n_node as Connection535
+        connect Rload12.n_node buck2.a_out as Connection538
+        connect Junction94 Cout8.p_node as Connection544
+        [
+            breakpoints = 2864, 1832; 2872, 1832; 2864, 1832
+        ]
+        connect I_3.p_node Junction94 as Connection545
+        connect Gain15.out MOSFET_1.in as Connection735
+        connect Gain16.out MOSFET_2.in as Connection739
+        connect Junction135 Junction83 as Connection760
+        [
+            breakpoints = 2224, 1432
+        ]
+        connect buck2.a_in Junction136 as Connection762
+        connect Rload9.n_node Junction136 as Connection764
+        connect buck2.b_in Junction137 as Connection766
+        connect Junction137 Cout6.n_node as Connection767
+        connect gnd3.node Junction137 as Connection768
+        connect Vout_f.p_node Junction1607 as Connection1895
+        connect Junction1607 Iout.p_node as Connection1896
+        [
+            breakpoints = 4104, 1064; 4104, 1056; 4104, 1056; 4104, 1056
+        ]
+        connect Gain16.in Junction1611 as Connection1908
+        connect Goto15 Junction1611 as Connection1910
+        connect I_bat_out.out Junction1616 as Connection1980
+        connect Junction1616 Ibi_out.in as Connection1981
+        connect Goto17 Junction1616 as Connection1982
+        connect I_5.out Junction1630 as Connection2054
+        connect Junction1630 Ibat1.in as Connection2055
+        connect Goto18 Junction1630 as Connection2056
+        connect V_bat1.in Junction1635 as Connection2072
+        connect Junction1635 V_bat.out as Connection2073
+        connect Goto20 Junction1635 as Connection2074
+        connect Vin1.out Junction1636 as Connection2075
+        connect Junction1636 Vin2.in as Connection2076
+        connect Goto21 Junction1636 as Connection2077
+        connect Iconvs.out Junction1665 as Connection2210
+        connect Junction1665 Goto22 as Connection2211
+        [
+            breakpoints = 3376, 1008; 3376, 968
+        ]
+        connect Iout_Convs_Total.in Junction1665 as Connection2212
+        connect Junction85 buck0.b_in as Connection2405
+        [
+            breakpoints = 2296, 1248; 2296, 1248
+        ]
+        connect Junction1724 From34 as Connection2599
+        [
+            breakpoints = 3624, 984
+        ]
+        connect S12.ctrl_in Junction1724 as Connection2600
+        connect S_grid6.in Junction1724 as Connection2601
+        [
+            breakpoints = 3624, 984
+        ]
+        connect Rload6.p_node Junction1732 as Connection2648
+        connect Rload11.p_node Junction1734 as Connection2654
+        connect Junction1734 Junction1735 as Connection2655
+        connect Junction1736 Junction1735 as Connection2659
+        connect Rload13.p_node Junction1736 as Connection2660
+        connect Iconvs.p_node Junction1746 as Connection2708
+        connect I_1.n_node Junction1746 as Connection2710
+        connect I_2.n_node Junction1753 as Connection2744
+        connect Junction1753 Junction1746 as Connection2745
+        [
+            breakpoints = 3224, 1432; 3224, 1056; 3224, 1056; 3224, 1056; 3224, 1056; 3224, 1056; 3224, 1056; 3224, 1056; 3224, 1056; 3216, 1056
+        ]
+        connect I_3.n_node Junction1753 as Connection2746
+        connect Iout_2.in Junction1754 as Connection2748
+        connect Junction1754 Goto6 as Connection2749
+        [
+            breakpoints = 2944, 1376
+        ]
+        connect I_2.out Junction1754 as Connection2750
+        connect I_3.out Junction1755 as Connection2753
+        connect Junction1755 Goto4 as Connection2754
+        [
+            breakpoints = 2904, 1792; 2904, 1768; 2904, 1744; 2976, 1744
+        ]
+        connect Iout_3.in Junction1755 as Connection2755
+        connect Vsp1.n_node Junction1773 as Connection2866
+        connect gnd0.node Junction1773 as Connection2868
+        connect Rload5.p_node Junction1780 as Connection2927
+        connect Vin1.p_node Junction1780 as Connection2929
+        connect Junction1773 Vin1.n_node as Connection2931
+        [
+            breakpoints = 1744, 1248; 1744, 1248; 1744, 1248; 1744, 1248
+        ]
+        connect Rload5.n_node Vsp1.p_node as Connection2930
+        [
+            breakpoints = 1712, 1056; 1712, 1056
+        ]
+        connect buck0.b_out Rsnb1.p_node as Connection2949
+        connect Rsnb1.n_node Junction1732 as Connection2950
+        connect buck1.b_out Rsnb2.p_node as Connection2951
+        connect Rsnb2.n_node Junction1734 as Connection2952
+        connect buck2.b_out Rsnb3.p_node as Connection2953
+        connect Rsnb3.n_node Junction1736 as Connection2954
+        connect S12.a_in "Core Coupling 1.a_out" as Connection2968
+        connect "Core Coupling 1.a_in" Iconvs.n_node as Connection2969
+        connect Junction8 Junction1786 as Connection2973
+        [
+            breakpoints = 4280, 1248; 4280, 1248; 4280, 1248; 4168, 1248
+        ]
+        connect Junction1786 Vout_f.n_node as Connection2974
+        [
+            breakpoints = 4104, 1248; 4104, 1248; 4104, 1248
+        ]
+        connect Rload3.n_node Junction9 as Connection3001
+        [
+            breakpoints = 4552, 1248; 4472, 1248; 4472, 1248; 4392, 1248
+        ]
+        connect Junction136 Junction135 as Connection3051
+        [
+            breakpoints = 2304, 1832; 2224, 1832; 2224, 1832; 2224, 1712
+        ]
+        connect Rsnb5.n_node "Core Coupling 2.a_out" as Connection3168
+        connect Rsnb5.p_node S20.b_in as Connection3193
+        connect S12.a_out Junction1819 as Connection3197
+        [
+            breakpoints = 3720, 1056
+        ]
+        connect Junction1819 Junction1607 as Connection3198
+        [
+            breakpoints = 3840, 1056; 3840, 1056; 3840, 1056; 3840, 1056; 4032, 1056; 4104, 1056; 4104, 1056
+        ]
+        connect S20.a_out Junction1819 as Connection3199
+        connect S20.a_in "Core Coupling 2.b_out" as Connection3210
+        connect Iin.p_node Junction1780 as Connection3214
+        connect Junction135 Junction1821 as Connection3215
+        [
+            breakpoints = 2224, 1432; 2224, 1432; 2224, 1432; 2224, 1432; 2224, 1432; 2224, 1432
+        ]
+        connect Junction1821 Junction80 as Connection3216
+        [
+            breakpoints = 2224, 1056
+        ]
+        connect Iin.out Junction1823 as Connection3222
+        connect Junction1823 Iin3.in as Connection3223
+        connect Goto23 Junction1823 as Connection3224
+        connect V_in.out Vsp1.in as Connection3225
+        connect S20.b_out Junction1834 as Connection3324
+        connect Junction1834 Junction1786 as Connection3325
+        [
+            breakpoints = 4032, 1248; 4032, 1248; 4032, 1248; 4104, 1248
+        ]
+        connect S12.b_out Junction1834 as Connection3326
+        connect "Core Coupling 1.b_out" S12.b_in as Connection3327
+        connect Junction1732 Junction1835 as Connection3329
+        [
+            breakpoints = 2824, 1248; 2824, 1248
+        ]
+        connect Junction1835 Junction1735 as Connection3330
+        [
+            breakpoints = 3408, 1248; 3408, 1248; 3408, 1248; 3408, 1240; 3408, 1624; 3408, 1624
+        ]
+        connect "Core Coupling 1.b_in" Junction1835 as Connection3331
+        connect Rsnb8.p_node "Core Coupling 2.a_in" as Connection3382
+        connect I_5.n_node Junction1843 as Connection3393
+        connect V_bat.p_node Junction1843 as Connection3395
+        connect I_6.p_node L6.n_node as Connection3416
+        connect Goto19 Junction1849 as Connection3417
+        [
+            breakpoints = 3736, 2568
+        ]
+        connect Junction1849 IL_bat.in as Connection3418
+        [
+            breakpoints = 3808, 2616
+        ]
+        connect I_6.out Junction1849 as Connection3419
+        connect Cdc.n_node I_c_dc.n_node as Connection3420
+        connect Goto24 I_c_dc.out as Connection3422
+        connect L6.p_node Rload14.n_node as Connection3425
+        connect From37 Buck1.s_ctrl as Connection3469
+        connect From38 Boost1.s_ctrl as Connection3470
+        connect Iin.n_node Junction1821 as Connection3493
+        [
+            breakpoints = 1936, 1056; 1944, 1056; 2040, 1056; 2040, 1056; 2224, 1056
+        ]
+        connect From36 Junction1860 as Connection3504
+        [
+            breakpoints = 3632, 1472; 3688, 1472
+        ]
+        connect Junction1860 S20.ctrl_in as Connection3505
+        [
+            breakpoints = 3728, 1472; 3728, 1472; 3728, 1472; 3728, 1472
+        ]
+        connect s_battery.in Junction1860 as Connection3506
+        connect "Core Coupling 2.b_in" I_bat_out.n_node as Connection3511
+        connect Junction1864 I_bat_out.p_node as Connection3537
+        [
+            breakpoints = 3848, 1920; 3856, 1920; 3848, 1920; 3848, 1920
+        ]
+        connect I_c_dc.p_node Junction1864 as Connection3538
+        connect Rload1.p_node Junction1868 as Connection3558
+        [
+            breakpoints = 4280, 1120; 4280, 1120
+        ]
+        connect Junction1868 Iout.n_node as Connection3559
+        [
+            breakpoints = 4280, 1056; 4264, 1056
+        ]
+        connect Junction1869 Junction1868 as Connection3562
+        connect Boost1.a_in S21.a_out as Connection3564
+        connect S22.a_out Buck1.a_out as Connection3569
+        connect From39 Junction1870 as Connection3571
+        connect Junction1870 S_battery_discharge1.in as Connection3572
+        [
+            breakpoints = 3792, 2400; 3840, 2400
+        ]
+        connect S21.ctrl_in Junction1870 as Connection3573
+        connect S21.a_in Junction1872 as Connection3577
+        [
+            breakpoints = 3920, 2520
+        ]
+        connect Junction1872 I_6.n_node as Connection3578
+        [
+            breakpoints = 3848, 2520
+        ]
+        connect S22.a_in Junction1872 as Connection3579
+        connect From40 Junction1873 as Connection3580
+        connect Junction1873 S22.ctrl_in as Connection3581
+        connect S_battery_charge.in Junction1873 as Connection3582
+        connect Rload2.p_node S1.a_out as Connection3583
+        connect S1.a_in Junction1869 as Connection3584
+        connect Rload3.p_node S2.a_out as Connection3588
+        connect S2.a_in Junction1869 as Connection3589
+        connect Junction89 I_7.n_node as Connection3601
+        connect I_7.p_node L1.n_node as Connection3602
+        connect I_L1.in I_7.out as Connection3603
+        connect I_8.p_node L4.n_node as Connection3605
+        connect I_2.p_node Junction1878 as Connection3606
+        connect Junction1878 I_8.n_node as Connection3607
+        connect Cout7.p_node Junction1878 as Connection3608
+        connect I_8.out I_L2.in as Connection3609
+        connect L5.n_node I_9.p_node as Connection3610
+        connect I_9.n_node Junction94 as Connection3611
+        connect I_L3.in I_9.out as Connection3612
+        connect S22.b_out Rsnb12.n_node as Connection3617
+        connect Rsnb12.p_node Buck1.b_out as Connection3618
+        connect Boost1.b_in Rsnb13.p_node as Connection3619
+        connect Rsnb13.n_node S21.b_out as Connection3620
+        connect Buck1.a_in S24.a_in as Connection3657
+        connect Buck1.b_in S24.b_in as Connection3659
+        connect S24.a_out Junction1883 as Connection3665
+        connect Junction1883 Junction1864 as Connection3666
+        connect Boost1.a_out Junction1883 as Connection3667
+        connect From44 S24.ctrl_in as Connection3668
+        connect Junction1843 Junction1884 as Connection3670
+        [
+            breakpoints = 3864, 2896; 3864, 2952; 3848, 2952
+        ]
+        connect Junction1884 Rload14.p_node as Connection3671
+        [
+            breakpoints = 3848, 2768
+        ]
+        connect Cbat.n_node Junction1884 as Connection3672
+        connect "Battery Cell1.N" "Battery Cell4.P" as Connection3680
+        connect "Battery Cell1.P" I_5.p_node as Connection3683
+        connect "Battery Cell4.T" Junction1887 as Connection3688
+        connect "Battery Cell1.T" Junction1887 as Connection3690
+        connect "Battery Cell5.P" "Battery Cell4.N" as Connection3692
+        connect Junction1887 Junction1888 as Connection3694
+        [
+            breakpoints = 4000, 3184
+        ]
+        connect Junction1888 V_in1.out as Connection3695
+        [
+            breakpoints = 4112, 3184
+        ]
+        connect "Battery Cell5.T" Junction1888 as Connection3696
+        connect Bat_SOC.in Junction1889 as Connection3710
+        [
+            breakpoints = 3352, 2920; 3352, 2920; 3344, 2920
+        ]
+        connect Junction1889 Goto16 as Connection3711
+        [
+            breakpoints = 3368, 2920
+        ]
+        connect SOC.out Gain17.in as Connection3712
+        connect Gain17.out Junction1889 as Connection3713
+        connect Vout_f.out "Low-Pass Filter2.in" as Connection3720
+        connect "Low-Pass Filter2.out" Junction45 as Connection3721
+        connect Cdc.p_node Junction1893 as Connection3759
+        connect Junction1893 Rsnb8.n_node as Connection3762
+        [
+            breakpoints = 4112, 1928; 4200, 1920; 4200, 1928; 4200, 1920; 4200, 1760
+        ]
+        connect Boost1.b_out Junction1894 as Connection3763
+        [
+            breakpoints = 4200, 2184
+        ]
+        connect Junction1894 Junction1893 as Connection3764
+        [
+            breakpoints = 4200, 1928
+        ]
+        connect S24.b_out Junction1894 as Connection3765
+        connect S21.b_in Junction1895 as Connection3766
+        connect Junction1895 S22.b_in as Connection3767
+        [
+            breakpoints = 4112, 2496
+        ]
+        connect Cbat.p_node Junction1896 as Connection3769
+        connect Goto14 Junction1897 as Connection3773
+        [
+            breakpoints = 4560, 944; 4560, 944; 4560, 944
+        ]
+        connect Junction1897 Gain15.in as Connection3774
+        [
+            breakpoints = 4440, 1008; 4440, 992; 4440, 992
+        ]
+        connect Step1.out Junction1898 as Connection3776
+        connect Junction1898 Junction1897 as Connection3777
+        connect S1.ctrl_in Junction1898 as Connection3778
+        connect Step2.out Junction1899 as Connection3779
+        connect Junction1899 Junction1611 as Connection3780
+        [
+            breakpoints = 4584, 1104; 4592, 1104; 4584, 1104; 4632, 1040; 4632, 1040
+        ]
+        connect S2.ctrl_in Junction1899 as Connection3781
+        connect Junction1896 Rsnb14.n_node as Connection3785
+        connect Rsnb14.p_node Junction1895 as Connection3786
+        connect "Battery Cell5.N" Junction1900 as Connection3788
+        connect Junction1900 Junction1896 as Connection3789
+        [
+            breakpoints = 4176, 2912; 4176, 2912; 4176, 2768
+        ]
+        connect V_bat.n_node Junction1900 as Connection3790
+    }
+
+    logically_deleted {
+        "DT Control.Constant10"
+        "DT Control.Constant11"
+        "DT Control.Signal switch7"
+        "DT Control.Constant18"
+        "DT Control.Signal switch8"
+        "DT Control.Constant19"
+        "DT Control.Signal switch9"
+        "DT Control.Constant20"
+        "DT Control.Gain12"
+        "DT Control.Signal switch4"
+        "DT Control.Constant15"
+        "DT Control.Gain18"
+        "DT Control.Signal switch5"
+        "DT Control.Constant16"
+        "DT Control.Gain19"
+        "DT Control.Signal switch6"
+        "DT Control.Constant17"
+        "DT Control.Gain21"
+        "DT Control.Gain20"
+        "DT Control.Sum25"
+        "DT Control.Signal switch10"
+        "DT Control.Constant21"
+        "DT Control.Sum26"
+        "DT Control.Signal switch11"
+        "DT Control.Constant22"
+        "DT Control.Sum27"
+        "DT Control.Signal switch12"
+        "DT Control.Constant23"
+        "DT Control.Sum28"
+        "DT Control.Signal switch13"
+        "DT Control.Constant24"
+        "DT Control.Constant25"
+        "DT Control.Sum29"
+        "DT Control.Signal switch14"
+        "DT Control.Constant26"
+        "DT Control.Constant27"
+        "DT Control.Sum30"
+        "DT Control.Signal switch15"
+        "DT Control.Constant28"
+        "DT Control.Constant29"
+        "DT Control.From18"
+        "DT Control.From20"
+        "DT Control.From44"
+        "DT Control.From45"
+        "DT Control.From46"
+        "DT Control.From39"
+        "DT Control.From40"
+        "DT Control.From41"
+        "DT Control.From42"
+        "DT Control.From43"
+        "DT Control.From47"
+        "DT Control.From36"
+        "DT Control.From49"
+        "DT Control.From51"
+        "DT Control.From54"
+        "DT Control.From55"
+        "DT Control.From22"
+        "DT Control.From57"
+        "DT Control.From58"
+        "DT Control.From60"
+        "DT Control.From61"
+        "DT Control.From62"
+        "DT Control.From63"
+        "DT Control.From64"
+        "DT Control.From65"
+        "DT Control.Connection2076"
+        "DT Control.Connection2078"
+        "DT Control.Connection2079"
+        "DT Control.Connection2080"
+        "DT Control.Connection2083"
+        "DT Control.Connection2084"
+        "DT Control.Connection2059"
+        "DT Control.Connection2060"
+        "DT Control.Connection2062"
+        "DT Control.Connection2063"
+        "DT Control.Connection2064"
+        "DT Control.Connection2065"
+        "DT Control.Connection2066"
+        "DT Control.Connection2068"
+        "DT Control.Connection2069"
+        "DT Control.Connection2070"
+        "DT Control.Connection2071"
+        "DT Control.Connection2110"
+        "DT Control.Connection2108"
+        "DT Control.Connection2116"
+        "DT Control.Connection2118"
+        "DT Control.Connection2119"
+        "DT Control.Connection2122"
+        "DT Control.Connection2124"
+        "DT Control.Connection2126"
+        "DT Control.Connection2127"
+        "DT Control.Connection2129"
+        "DT Control.Connection2130"
+        "DT Control.Connection2131"
+        "DT Control.Connection2133"
+        "DT Control.Connection2134"
+        "DT Control.Connection2135"
+        "DT Control.Connection2138"
+        "DT Control.Connection2139"
+        "DT Control.Connection2141"
+        "DT Control.Connection2142"
+        "DT Control.Connection2143"
+        "DT Control.Connection2145"
+        "DT Control.Connection2147"
+        "DT Control.Connection2148"
+        "DT Control.Connection2149"
+        "DT Control.Connection2150"
+        "DT Control.Connection2151"
+        "DT Control.Connection2152"
+        "DT Control.Connection2154"
+        "DT Control.Connection2155"
+        "DT Control.Connection2156"
+        "DT Control.Connection2157"
+        "DT Control.Connection2158"
+        "Battery Control.I_convs_pu"
+        "Battery Control.C function8"
+        "Battery Control.C function9"
+        "Battery Control.C function10"
+        "Battery Control.C function11"
+        "Battery Control.Abs1"
+        "Battery Control.Abs2"
+        "Battery Control.Abs3"
+        "Battery Control.Abs4"
+        "Battery Control.Discrete State Space1"
+        "V_in2"
+        "From45"
+    }
+
+    default {
+        "core/Abs" {
+            execution_rate = "inherit"
+        }
+
+        "core/C function" {
+            input_terminals = "real in;"
+            input_terminals_show_labels = "False;"
+            input_terminals_feedthrough = "True;"
+            input_terminals_dimensions = "inherit;"
+            output_terminals = "real out;"
+            output_terminals_show_labels = "False;"
+            output_terminals_feedthrough = "True;"
+            output_terminals_dimensions = "inherit;"
+            output_fnc = ""
+            update_fnc = ""
+            init_fnc = ""
+            global_variables = ""
+            parameters = ""
+            library_load_type = "Compile-time load"
+            dll_file_path = ""
+            dll_file_path_full = ""
+            arm_a9_file_path = ""
+            arm_a9_file_path_full = ""
+            arm_a53_file_path = ""
+            arm_a53_file_path_full = ""
+            h_file_path = ""
+            h_file_path_full = ""
+            add_src_path = ""
+            add_src_path_full = ""
+            convert_to_relative_dll = "True"
+            convert_to_relative_a = "True"
+            convert_to_relative_src = "True"
+            arb_defs = ""
+            add_macros = ""
+            skip_pre_cmpl_check = "False"
+            generate_for_hil = "True"
+            execution_rate = "inherit"
+            _supported_platforms = "[\'generic\']"
+            refresh = "refresh"
+        }
+
+        "core/Capacitor" {
+            signal_access = "inherit"
+            capacitance = "1e-6"
+            initial_voltage = "0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Constant" {
+            value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Discrete State Space" {
+            domain = "S-domain"
+            method = "Zero-order hold"
+            A = "[[-1]]"
+            B = "[[1]]"
+            C = "[[1], [0]]"
+            D = "[[0],[1]]"
+            initial_conditions = "[0]"
+            execution_rate = "inherit"
+        }
+
+        "core/Gain" {
+            gain = "1"
+            multiplication = "Element-wise(K.*u)"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Inductor" {
+            signal_access = "inherit"
+            inductance = "1e-3"
+            initial_current = "0.0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Low-Pass Filter" {
+            frequency = "500"
+            init_out = "0"
+            unit = "Hz"
+            execution_rate = "inherit"
+            _tunable = "False"
+        }
+
+        "core/Output Settings" {
+            analog_outputs = "[]"
+            digital_outputs = "[]"
+            hil_id = "0"
+            signal = ""
+        }
+
+        "core/PID controller" {
+            controller_type = "PID"
+            kp = "1"
+            kp_source = "internal"
+            ki = "1"
+            ki_source = "internal"
+            kd = "0"
+            kd_source = "internal"
+            filt_coef = "100"
+            int_init_value = "0"
+            filt_init_value = "0"
+            enb_output_limit_out = "False"
+            show_reset = "none"
+            upper_sat_lim = "1"
+            upper_sat_lim_source = "internal"
+            lower_sat_lim = "-1"
+            lower_sat_lim_source = "internal"
+            enb_anti_windup_out = "False"
+            signal_out_type = "inherit"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Product" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Relational operator" {
+            relational_op = "=="
+            execution_rate = "inherit"
+        }
+
+        "core/Resistor" {
+            resistance = "1"
+            param_set = ""
+        }
+
+        "core/SCADA Input" {
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
+        }
+
+        "core/Signal switch" {
+            criterion = "ctrl > threshold"
+            threshold = "0.5"
+            execution_rate = "inherit"
+        }
+
+        "core/Step" {
+            step_time = "1"
+            initial_value = "0"
+            final_value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+        }
+
+        "core/Sum" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Triangular Wave Source" {
+            min_val = "-0.5"
+            max_val = "0.5"
+            frequency = "50"
+            duty_cycle = "0.5"
+            phase = "0"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Unit Delay" {
+            init_value = "0"
+            signal_out_type = "inherit"
+            execution_rate = "inherit"
+        }
+
+        "core/Battery Cell" {
+            SOC_vector = "[0.00000, 0.00500, 0.01000, 0.01500, 0.02000, 0.02500, 0.03000, 0.03500, 0.04000, 0.04500, 0.05000, 0.05500, 0.06000, 0.06500, 0.07000, 0.07500, 0.08000, 0.08500, 0.09000, 0.09500, 0.10000, 0.10500, 0.11000, 0.11500, 0.12000, 0.12500, 0.13000, 0.13500, 0.14000, 0.14500, 0.15000, 0.15500, 0.16000, 0.16500, 0.17000, 0.17500, 0.18000, 0.18500, 0.19000, 0.19500, 0.20000, 0.20500, 0.21000, 0.21500, 0.22000, 0.22500, 0.23000, 0.23500, 0.24000, 0.24500, 0.25000, 0.25500, 0.26000, 0.26500, 0.27000, 0.27500, 0.28000, 0.28500, 0.29000, 0.29500, 0.30000, 0.30500, 0.31000, 0.31500, 0.32000, 0.32500, 0.33000, 0.33500, 0.34000, 0.34500, 0.35000, 0.35500, 0.36000, 0.36500, 0.37000, 0.37500, 0.38000, 0.38500, 0.39000, 0.39500, 0.40000, 0.40500, 0.41000, 0.41500, 0.42000, 0.42500, 0.43000, 0.43500, 0.44000, 0.44500, 0.45000, 0.45500, 0.46000, 0.46500, 0.47000, 0.47500, 0.48000, 0.48500, 0.49000, 0.49500, 0.50000, 0.50500, 0.51000, 0.51500, 0.52000, 0.52500, 0.53000, 0.53500, 0.54000, 0.54500, 0.55000, 0.55500, 0.56000, 0.56500, 0.57000, 0.57500, 0.58000, 0.58500, 0.59000, 0.59500, 0.60000, 0.60500, 0.61000, 0.61500, 0.62000, 0.62500, 0.63000, 0.63500, 0.64000, 0.64500, 0.65000, 0.65500, 0.66000, 0.66500, 0.67000, 0.67500, 0.68000, 0.68500, 0.69000, 0.69500, 0.70000, 0.70500, 0.71000, 0.71500, 0.72000, 0.72500, 0.73000, 0.73500, 0.74000, 0.74500, 0.75000, 0.75500, 0.76000, 0.76500, 0.77000, 0.77500, 0.78000, 0.78500, 0.79000, 0.79500, 0.80000, 0.80500, 0.81000, 0.81500, 0.82000, 0.82500, 0.83000, 0.83500, 0.84000, 0.84500, 0.85000, 0.85500, 0.86000, 0.86500, 0.87000, 0.87500, 0.88000, 0.88500, 0.89000, 0.89500, 0.90000, 0.90500, 0.91000, 0.91500, 0.92000, 0.92500, 0.93000, 0.93500, 0.94000, 0.94500, 0.95000, 0.95500, 0.96000, 0.96500, 0.97000, 0.97500, 0.98000, 0.98500, 0.99000, 0.99500, 1.00000]"
+            Init_SOC = "100"
+            SOH_vector = "0"
+            T_vector = "[5, 25, 45]"
+            OCV = "[[ 2.81376455, 2.934249, 3.01131295, 3.0707406, 3.12232055, 3.1679386999999997, 3.20864785, 3.2450991, 3.27819715, 3.30856405, 3.3362725999999996, 3.3618633499999997, 3.38570235, 3.40775795, 3.42830425, 3.4476403500000004, 3.4655972, 3.48235125, 3.4982734000000004, 3.5123286499999997, 3.52428065, 3.5322503000000003, 3.536190725, 3.538614355, 3.5410027349999997, 3.543410505, 3.54570155, 3.548176695, 3.55074616, 3.55332738, 3.5560948150000002, 3.5590690300000003, 3.5622155269999998, 3.5656399850000002, 3.569116135, 3.5732180099999997, 3.57727722, 3.5820934199999996, 3.58702369, 3.5923769, 3.5981162299999996, 3.60387865, 3.6098619999999997, 3.61578425, 3.6219618000000002, 3.6279250050000003, 3.633843695, 3.6400532699999997, 3.646100845, 3.6525218749999997, 3.659006475, 3.6658932699999998, 3.6723717, 3.67845187, 3.6843657899999998, 3.690319095, 3.696598375, 3.70317101, 3.7103087649999997, 3.71751191, 3.72478503, 3.7312556949999998, 3.737126875, 3.7421215, 3.746753425, 3.7512470799999997, 3.7557191, 3.759948005, 3.7641692570000003, 3.7683243400000004, 3.77226982, 3.776130865, 3.77996065, 3.7834905, 3.78724775, 3.79068595, 3.79405435, 3.79739885, 3.8008169, 3.8037784, 3.80672915, 3.80976375, 3.81294495, 3.8155956, 3.81841755, 3.8211345, 3.82375915, 3.826463, 3.8289732, 3.83148675, 3.8339139, 3.8364958500000004, 3.8389766, 3.84130125, 3.8436186, 3.84593155, 3.8484112, 3.8508698999999997, 3.853017, 3.8553768, 3.8575925, 3.8597776, 3.8618757, 3.8639596, 3.8662289, 3.8684966, 3.8704239, 3.8727584, 3.8746679, 3.8767636000000003, 3.8789283, 3.88108645, 3.88336145, 3.88554035, 3.8876272999999997, 3.88979185, 3.8919731499999997, 3.89423455, 3.89660415, 3.89878675, 3.9010609, 3.9034554999999997, 3.9058273, 3.9083077999999998, 3.9107870499999997, 3.9134431, 3.91605185, 3.9188395000000003, 3.92173155, 3.9245562, 3.9278719, 3.93123635, 3.93501795, 3.9392118, 3.9434215, 3.9476625, 3.9522793, 3.956863, 3.9614228, 3.9661213500000003, 3.97056845, 3.97496085, 3.97923145, 3.98304985, 3.9867527999999997, 3.990355, 3.9938599000000004, 3.997107, 4.0001812, 4.0032136000000005, 4.0059932, 4.0087594499999994, 4.011432500000001, 4.0139152, 4.0163138, 4.0185217, 4.02070895, 4.022900900000001, 4.0249913, 4.0268188, 4.02872455, 4.03070295, 4.0323274, 4.0341031, 4.03572435, 4.0374238, 4.03904715, 4.0406617, 4.0421721999999995, 4.04385255, 4.04555215, 4.0469809, 4.048781399999999, 4.05039585, 4.052104, 4.05390415, 4.0557043, 4.057513849999999, 4.0593374, 4.0614338, 4.0635322, 4.0657283, 4.0680112, 4.0704244, 4.07274935, 4.075507399999999, 4.0782211, 4.0812930000000005, 4.08431865, 4.08759685, 4.0910807, 4.0947777499999995, 4.0989474, 4.10329865, 4.10799, 4.1129271, 4.1185746, 4.1244995, 4.1311105999999995, 4.138731625, 4.14890576], [2.8100227500000003, 2.916445, 2.99576475, 3.057303, 3.11000275, 3.1564935, 3.19803925, 3.2350955, 3.26858575, 3.2992202500000003, 3.3273629999999996, 3.35331675, 3.37731175, 3.39958975, 3.4203212499999998, 3.4398017500000004, 3.457986, 3.47495625, 3.4909670000000004, 3.50564325, 3.51860325, 3.5288515, 3.535353625, 3.539071775, 3.5418136749999998, 3.544252525, 3.54650775, 3.5488834750000002, 3.5513308, 3.5538369, 3.556474075, 3.55934515, 3.5622776349999996, 3.565399925, 3.5687806749999997, 3.57249005, 3.5763861, 3.5808671, 3.5855184500000004, 3.5906845, 3.5961811499999996, 3.60179325, 3.60771, 3.6137212499999998, 3.619809, 3.626025025, 3.632018475, 3.63826635, 3.644504225, 3.6510093749999997, 3.657832375, 3.66466635, 3.6710585, 3.67705935, 3.6830289499999997, 3.689195475, 3.6957918750000003, 3.70265505, 3.709943825, 3.71715955, 3.72392515, 3.729878475, 3.735234375, 3.7402075, 3.744967125, 3.7498354, 3.7545954999999998, 3.759340025, 3.764046285, 3.7688217, 3.7733491, 3.777854325, 3.78220325, 3.7862525, 3.7902387500000003, 3.79382975, 3.79747175, 3.80099425, 3.8044845, 3.807692, 3.81084575, 3.81401875, 3.81712475, 3.819978, 3.82288775, 3.8256725, 3.82839575, 3.831115, 3.833666, 3.83623375, 3.8387695, 3.8412792500000004, 3.843683, 3.84610625, 3.848493, 3.85085775, 3.853256, 3.8555495, 3.857885, 3.860084, 3.8623624999999997, 3.864488, 3.8665785, 3.868598, 3.8707445, 3.872883, 3.8749195, 3.876992, 3.8789395, 3.881018, 3.8830415, 3.88503225, 3.88720725, 3.88930175, 3.8913365, 3.89335925, 3.8954657499999996, 3.89757275, 3.89982075, 3.90193375, 3.9041045000000003, 3.9064775, 3.9087365, 3.911139, 3.91353525, 3.9160155, 3.91865925, 3.9213975000000003, 3.92425775, 3.927181, 3.9305595, 3.93418175, 3.93828975, 3.942859, 3.9479075, 3.9531125, 3.9585965, 3.9639149999999996, 3.968714, 3.97340675, 3.9776422499999997, 3.98160425, 3.98535725, 3.98884925, 3.992164, 3.995375, 3.9984995000000003, 4.001535, 4.004506, 4.007268, 4.0099659999999995, 4.01259725, 4.015162500000001, 4.017576, 4.019969, 4.0222085, 4.02434475, 4.026504500000001, 4.0285565, 4.030494, 4.03242275, 4.03431475, 4.036036999999999, 4.0377155, 4.03942175, 4.041119, 4.04283575, 4.0445085, 4.046061, 4.047662750000001, 4.04936075, 4.050904500000001, 4.052707, 4.05437925, 4.05612, 4.05792075, 4.0597215, 4.06156925, 4.063487, 4.065569, 4.067661, 4.0698415, 4.072056, 4.074522, 4.07694675, 4.079536999999999, 4.0823055, 4.085265000000001, 4.08839325, 4.0915842499999995, 4.0950035, 4.09868875, 4.102737, 4.106893250000001, 4.11155, 4.1162355, 4.1216729999999995, 4.1272975, 4.133553, 4.140458125, 4.149328799999999], [2.80628095, 2.898641, 2.98021655, 3.0438654, 3.09768495, 3.1450483, 3.18743065, 3.2250919, 3.2589743500000004, 3.2898764500000004, 3.3184533999999997, 3.34477015, 3.36892115, 3.39142155, 3.41233825, 3.43196315, 3.4503747999999996, 3.46756125, 3.4836606000000003, 3.4989578499999996, 3.5129258500000002, 3.5254527, 3.534516525, 3.539529195, 3.542624615, 3.545094545, 3.54731395, 3.549590255, 3.55191544, 3.55434642, 3.556853335, 3.55962127, 3.562339743, 3.565159865, 3.568445215, 3.57176209, 3.57549498, 3.5796407799999996, 3.58401321, 3.5889921, 3.5942460699999996, 3.59970785, 3.605558, 3.6116582499999996, 3.6176562, 3.624125045, 3.630193255, 3.63647943, 3.642907605, 3.6494968749999996, 3.656658275, 3.66343943, 3.6697452999999998, 3.67566683, 3.6816921099999997, 3.688071855, 3.694985375, 3.70213909, 3.709578885, 3.71680719, 3.72306527, 3.728501255, 3.7333418750000003, 3.7382934999999997, 3.743180825, 3.74842372, 3.7534718999999996, 3.758732045, 3.7639233130000003, 3.7693190600000004, 3.77442838, 3.779577785, 3.78444585, 3.7890145, 3.79322975, 3.7969735499999997, 3.80088915, 3.80458965, 3.8081521, 3.8116056, 3.81496235, 3.81827375, 3.8213045500000002, 3.8243603999999998, 3.82735795, 3.8302104999999997, 3.83303235, 3.8357669999999997, 3.8383588, 3.84098075, 3.8436251, 3.8460626500000004, 3.8483894000000003, 3.8509112500000002, 3.8533674, 3.85578395, 3.8581008, 3.8602290999999997, 3.862753, 3.8647912, 3.8671325, 3.8691984, 3.8712813, 3.8732364, 3.8752600999999998, 3.8772694, 3.8794151, 3.8812256, 3.8832111, 3.8852724000000003, 3.8871547, 3.88897805, 3.89105305, 3.8930631499999997, 3.8950457, 3.89692665, 3.8989583499999996, 3.90091095, 3.90303735, 3.90508075, 3.9071481, 3.9094995, 3.9116457000000002, 3.9139702, 3.91628345, 3.9185879, 3.92126665, 3.9239555, 3.92678395, 3.9298058, 3.9332471, 3.93712715, 3.9415615500000003, 3.9465062, 3.9523935, 3.9585624999999998, 3.9649137, 3.970967, 3.9760052, 3.9806921500000003, 3.98471605, 3.98824765, 3.99148305, 3.99464865, 3.9975752, 4.000395, 4.0031391, 4.005963, 4.0088308, 4.0113224, 4.0139388, 4.016435049999999, 4.018892500000001, 4.0212368, 4.0236241999999995, 4.0258953, 4.02798055, 4.0301081000000005, 4.032121699999999, 4.0341692, 4.03612095, 4.03792655, 4.0397466, 4.0413279, 4.04311915, 4.0448142, 4.04662435, 4.0483553, 4.0499498, 4.05147295, 4.05316935, 4.0548281, 4.0566325999999995, 4.05836265, 4.060136, 4.06193735, 4.0637387, 4.06562465, 4.0676366, 4.069704199999999, 4.0717898, 4.0739547, 4.0761008, 4.0786196, 4.08114415, 4.083566599999999, 4.0863899, 4.089237000000001, 4.09246785, 4.09557165, 4.0989263, 4.1025997499999995, 4.1065266, 4.11048785, 4.11511, 4.1195439, 4.1247714, 4.1300955, 4.1359954, 4.1421846250000005, 4.1497518399999995]]"
+            R0 = "[4.6198e-3, 1.7810e-3, 1.1351e-3]"
+            eta = "[0.98174, 0.99102, 0.98965]"
+            cell_NO = "1"
+            nom_Q_combo = "Total capacity"
+            Q_discharge = "[14.592, 14.532, 14.444]"
+            V_min = "2.81"
+            I_dis = "15"
+            Q_total = "[14.592, 14.532, 14.444]"
+            execution_rate = "100e-6"
+            visualize_luts = "Visualize Lookup Tables"
+            RC_NO = "None"
+            R1 = "8e-3"
+            C1 = "60e3"
+            R2 = "8e-3"
+            C2 = "120e3"
+            R3 = "8e-3"
+            C3 = "180e3"
+            T_vector_diff = "0"
+            SOH_vector_diff = "0"
+            H_type = "None"
+            T_vector_h = "[5, 25, 45]"
+            SOC_vector_h = "0"
+            M0 = "[0.0031315, 0.0023535, 0.0011502]"
+            M = "[0.039929, 0.020018, 0.020545]"
+            gamma = "[67.207, 92.645, 67.840]"
+            visualize_luts2 = "Visualize Lookup Tables"
+            balancing = "None"
+            R_balance = "10"
+            thermal_flag = "True"
+            Rth = "3.40"
+            Cth = "17.65"
+            cell_temp_init = "25"
+            meas_SOH = "False"
+            meas_SOC = "False"
+            meas_OCV = "False"
+            meas_Rint = "False"
+            meas_Q = "False"
+            meas_Ibal = "False"
+            meas_Icell = "False"
+            meas_T = "False"
+            meas_hyst = "False"
+            meas_diffusion = "False"
+        }
+
+        "core/Boost" {
+            signal_access = "inherit"
+            model_type = "Global GDS oversampling"
+            ctrl_src = "Digital inputs"
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            execution_rate = "inherit"
+            S1 = "1"
+            S1_logic = "active high"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            diode_pos = "upper_leg"
+            losses_estimation = "False"
+            fvd_def_method = "Voltage and Resistance"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            Vce = "1.3"
+            Rce = "0"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            visualize_luts = "Visualize Lookup Tables"
+            show_monitoring = "False"
+        }
+
+        "core/Buck" {
+            signal_access = "inherit"
+            ctrl_src = "Digital inputs"
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            execution_rate = "inherit"
+            S1 = "1"
+            S1_logic = "active high"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            losses_estimation = "False"
+            fvd_def_method = "Voltage and Resistance"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            Vce = "1.3"
+            Rce = "0"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            visualize_luts = "Visualize Lookup Tables"
+            show_monitoring = "False"
+        }
+
+        "core/Current Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/Double Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+        }
+
+        "core/Signal Controlled Voltage Source" {
+            execution_rate = "inherit"
+        }
+
+        "core/Single Phase Core Coupling" {
+            snb_type_i = "none"
+            R1 = "100000.0"
+            C1 = "1e-06"
+            C2 = "1e-06"
+            fixed_snb_i = "false"
+            snb_type_u = "none"
+            R2 = "0.1"
+            L1 = "0.1"
+            L2 = "0.1"
+            fixed_snb_u = "false"
+        }
+
+        "core/Single Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            switching = "any current"
+            hide_int_meas = "False"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        import math
+        #import stdlib
+        #import stdio
+        
+        Sample_Time = 30e-6;
+        #f_bi = 18e3;
+        T_s = Sample_Time;
+        #1/f_bi;
+        T_dis = 60e-6;
+        
+        V_out = 24;
+        
+        # Mode 0 & 3 & 4
+        Imax_m034_z1 = 0.05;
+        Imax_m034_z2 = 0.1;
+        Imax_m034_z3 = 0.2;
+        
+        # Mode 1 & 2
+        Imax_m12_z1 = 0.25;
+        Imax_m12_z2 = 0.3;
+        Imax_m12_z3 = 0.4;
+        
+        
+        
+        #thresh_zone_1 = 0.1 * I_max_zone_1;
+        #thresh_zone_2 = 0.1 * I_max_zone_2;
+        #thresh_zone_3 = 0.1 * I_max_zone_3;
+        
+        # Bi-directional Boos Converter
+        #i=1;
+        
+        Lambda_s_1 = 1e-3;
+        Lambda_s_2 = 1e-2;
+        Lambda_s_3 = 1e-2;
+        Lambda_s_4 = 1e-3;
+        
+        # Mode 4
+        Lambda_i_4 = 1;
+        Lambda_v_4 = 1;
+        
+        #G_opt = 1e10;
+        #X_opt = 1;
+        #V_thresh = 0.2;
+        
+        # For Detecting Operation Mode
+        #I_thresh_high = 0.02; # 2% upper band 
+        #I_thresh_low = -0.02; # 2% lower band
+        
+        # Minimum Required Current For Operation Mode 3
+        i_min = 0; # 5% minimum requirement current from MG
+        
+        #i_thresh = 0.3; # For Calculating and Correcting Delta_I
+        C_dc = 0.09;
+        C_bat = 2*470e-6;
+        #4.5455e-4;
+        L = 90e-3;
+        #L = 5.6818e-4;
+        R_L = 0.15;
+        #int S_1[1][2]
+        #S_1[1][2] = {{1,0}};
+        #S_2[1][2] = {{1,0}};
+        #S_1 = [[1,0]];
+        #S_2 = [[1,0]];
+        
+        
+        # A matrix (states)
+        a11 = -R_L/L
+        a12 = -1/L
+        a21 = -1/C_bat
+        a22 = 0
+        a_matrix = [[a11, a12], [a21, a22]]
+        # B matrix (inputs)
+        b11 = -1/L
+        b12 = 0
+        b21 = 0
+        b22 = -1/C_bat
+        b_matrix = [[b11, b12], [b21, b22]]
+        # C matrix (outputs)
+        c11 = 1     # get x1 state
+        c12 = 0
+        c21 = 0
+        c22 = 1     # get x2 state
+        c_matrix = [[c11, c12], [c21, c22]]
+        # D matrix
+        d11 = 0
+        d12 = 0
+        d21 = 0
+        d22 = 0
+        d_matrix = [[d11, d12], [d21, d22]]
+    ENDCODE
+}
